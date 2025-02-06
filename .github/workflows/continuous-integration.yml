@@ -87,7 +87,7 @@ jobs:
 
   run-sonar:
     needs: build-and-test
-    uses: ./.github/workflows/02-transaction-sonar-analysis.yml
+    uses: ./.github/workflows/sonar-analysis.yml
     secrets:
       githubToken: ${{ secrets.GITHUB_TOKEN }}
       sonarToken: ${{ secrets.SONAR_TOKEN }}

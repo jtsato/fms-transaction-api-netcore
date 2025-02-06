@@ -69,7 +69,7 @@ This is a sample project to demonstrate the Clean Architecture principles using 
 
 ## Prerequisites
 
-* [.NET 7](https://dotnet.microsoft.com/download)
+* [.NET 8](https://dotnet.microsoft.com/download)
 * [Docker](https://docs.docker.com/get-docker)
 * [Docker compose](https://docs.docker.com/compose/install/)
 
