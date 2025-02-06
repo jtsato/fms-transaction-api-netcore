@@ -1,4 +1,4 @@
-name: 02 TS SonarCloud Integration
+name: SonarCloud Integration
 
 on:
   workflow_call:

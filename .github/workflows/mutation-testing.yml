@@ -1,4 +1,4 @@
-name: 03 TS Mutation Tests
+name: Mutation Tests
 
 on:
   push:
