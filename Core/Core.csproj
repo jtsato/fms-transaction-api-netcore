@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <PackageId>Core</PackageId>
+        <Nullable>disable</Nullable>
+        <ImplicitUsings>false</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <SonarQubeSetting Include="sonar.coverage.exclusions">
+            <Value>**/*Command.cs</Value>
+            <Value>**/*Query.cs</Value>
+        </SonarQubeSetting>
+        <SonarQubeSetting Include="sonar.cpd.exclusions">
+            <Value>**/*CommandValidator.cs</Value>
+            <Value>**/*QueryValidator.cs</Value>
+        </SonarQubeSetting>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="FluentValidation" Version="11.11.0" />
+        <PackageReference Include="Newtonsoft.Json.Schema" Version="4.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Domains\Transactions\Gateways\" />
+      <Folder Include="Domains\Transactions\Models\" />
+      <Folder Include="Domains\Transactions\Query\" />
+      <Folder Include="Domains\Transactions\UseCases\" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,99 @@
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <data name="CommonUnexpectedException" xml:space="preserve">
+        <value>Ocorreu um erro inesperado, por favor tente novamente mais tarde!</value>
+    </data>
+    <data name="CommonValidationAlert" xml:space="preserve">
+        <value>Favor corrigir os erros e enviar os dados novamente!</value>
+    </data>
+    <data name="CommonUnexpectedExceptionWithParams" xml:space="preserve">
+        <value>Ocorreu um erro inesperado, por favor tente novamente mais tarde! Detalhes: {0}.</value>
+    </data>
+    <data name="CommonInvalidRequest" xml:space="preserve">
+        <value>A solicitação recebida é inválida. Verifique o formato e os parâmetros na documentação, corrija-os e tente novamente.</value>
+    </data>
+    <data name="CommonJsonPropertyMissing" xml:space="preserve">
+        <value>A propriedade '{0}' é obrigatória.</value>
+    </data>
+    <data name="CommonJsonPropertyInvalid" xml:space="preserve">
+        <value>A propriedade '{0}' é inválida.</value>
+    </data>
+    <data name="CommonJsonPropertyWrongType" xml:space="preserve">
+        <value>A propriedade '{0}' possui um valor incompatível com o seu tipo esperado.</value>
+    </data>
+    <data name="ValidationPropertyFromCreatedAtIsInvalid" xml:space="preserve">
+        <value>O campo 'criado em' inicial é inválido.</value>
+    </data>
+    <data name="ValidationPropertyFromUpdatedAtIsInvalid" xml:space="preserve">
+        <value>O campo 'atualizado em' inicial é inválido.</value>
+    </data>
+    <data name="ValidationPropertyToCreatedAtIsInvalid" xml:space="preserve">
+        <value>O campo 'criado em' final é inválido.</value>
+    </data>
+    <data name="ValidationPropertyToUpdatedAtIsInvalid" xml:space="preserve">
+        <value>O campo 'atualizado em' final é inválido.</value>
+    </data>
+    <data name="ValidationPropertyTransactionIsNullOrEmpty" xml:space="preserve">
+        <value>O campo 'transação' do anúncio é obrigatório.</value>
+    </data>
+    <data name="ValidationPropertyNotFound" xml:space="preserve">
+        <value>O imóvel de identificador {0} não foi encontrado.</value>
+    </data>
+    <data name="ValidationPropertyIdIsNullOrEmpty" xml:space="preserve">
+        <value>O campo 'id' é obrigatório.</value>
+    </data>
+    <data name="ValidationPropertyNumberOfBedroomsIsInvalid" xml:space="preserve">
+        <value>O número inicial de quartos não pode ser maior do que o número máximo de quartos.</value>
+    </data>
+    <data name="ValidationPropertyNumberOfGaragesIsInvalid" xml:space="preserve">
+        <value>O número inicial de garagens não pode ser maior do que o número máximo de garagens.</value>
+    </data>
+    <data name="ValidationPropertyNumberOfToiletsIsInvalid" xml:space="preserve">
+        <value>O número inicial de banheiros não pode ser maior do que o número máximo de banheiros.</value>
+    </data>
+    <data name="ValidationPropertyPriceByM2IsInvalid" xml:space="preserve">
+        <value>O preço inicial por metro quadrado não pode ser maior do que o preço máximo por metro quadrado.</value>
+    </data>
+    <data name="ValidationPropertyRentalPriceIsInvalid" xml:space="preserve">
+        <value>O preço inicial de aluguel não pode ser maior do que o preço máximo de aluguel.</value>
+    </data>
+    <data name="ValidationPropertyRentalTotalPriceIsInvalid" xml:space="preserve">
+        <value>O preço total inicial de aluguel não pode ser maior do que o preço total máximo de aluguel.</value>
+    </data>
+    <data name="ValidationPropertySellingPriceIsInvalid" xml:space="preserve">
+        <value>O preço de venda inicial não pode ser maior do que o preço de venda máximo.</value>
+    </data>
+    <data name="ValidationPropertyStatusIsInvalid" xml:space="preserve">
+        <value>O campo de 'status' da propriedade é inválido.</value>
+    </data>
+    <data name="ValidationPropertyTransactionIsInvalid" xml:space="preserve">
+        <value>O campo 'transação' da propriedade é inválido.</value>
+    </data>
+    <data name="ValidationPropertyTypesAreInvalid" xml:space="preserve">
+        <value>O campo 'tipo' da propriedade é obrigatório.</value>
+    </data>
+    <data name="ValidationPropertyBuiltAreaIsInvalid" xml:space="preserve">
+        <value>A área construída inicial não pode exceder a área construída máxima permitida.</value>
+    </data>
+    <data name="ValidationPropertyAreaIsInvalid" xml:space="preserve">
+        <value>A área inicial não pode exceder a área máxima permitida.</value>
+    </data>
+    <data name="ValidationPropertyRankingIsInvalid" xml:space="preserve">
+        <value>O campo 'ranking' da proprieade é inválido.</value>
+    </data>
+</root>

@@ -1,0 +1,7 @@
+{
+  "DOCKER_COMPOSE_FILE": "docker-compose.yml",
+  "MONGODB_URL": "mongodb://xunit:xunit@localhost:27018/transactions-mongodb",
+  "MONGODB_DATABASE": "transactions-mongodb",
+  "TRANSACTION_COLLECTION_NAME": "transactions",
+  "TRANSACTION_SEQUENCE_COLLECTION_NAME": "transactions_sequences"
+}

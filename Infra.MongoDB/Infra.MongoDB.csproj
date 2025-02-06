@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>disable</Nullable>
+        <ImplicitUsings>disable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="MongoDB.Bson" Version="3.1.0" />
+        <PackageReference Include="MongoDB.Driver" Version="3.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Core\Core.csproj">
+            <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+        </ProjectReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Domains\Transactions\Mapper\" />
+      <Folder Include="Domains\Transactions\Model\" />
+      <Folder Include="Domains\Transactions\Providers\" />
+      <Folder Include="Domains\Transactions\Repository\" />
+    </ItemGroup>
+
+</Project>
