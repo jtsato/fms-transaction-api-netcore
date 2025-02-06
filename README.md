@@ -10,7 +10,7 @@ Este projeto implementa os princípios da Clean Architecture utilizando .NET Cor
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=jtsato_transactions-api-netcore&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=jtsato_transactions-api-netcore)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=jtsato_transactions-api-netcore&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=jtsato_transactions-api-netcore)
 
-**Table of Contents**
+**Índice de Conteúdos**
 
 * [Tasks](#tasks)
 * [Technology stack](#technology-stack)
@@ -26,36 +26,36 @@ Este projeto implementa os princípios da Clean Architecture utilizando .NET Cor
 | Tarefa | Status |
 |---------|-------|
 | Macro architecture | ✅ |
-| Framework definition | ✅ |
-| Domain Model Design | ✅ |
-| Code Repository creation/configuration | ✅ |
-| Layer definition and naming | ✅ |
-| C4 diagrams [design + pipeline] | ✅ |
-| Exception Handling [exception filter] | ✅ |
-| Solution for handling nulls [nullable vs optional] | ✅ |
-| Internationalization [multi-language support] | ✅ |
-| Health Check endpoints | ⏳ |
-| Integration with sonarcloud | ⏳ |
+| Definição de Framework | ✅ |
+| Design do Modelo de Domínio | ✅ |
+| Criação/configuração do Repositório de Código | ✅ |
+| Definição e nomeação das camadas | ✅ |
+| Diagramas C4 [design + pipeline] | ✅ |
+| Tratamento de Exceções [exception filter] | ✅ |
+| Solução para lidar com nulls [nullable vs optional] | ✅ |
+| Internacionalização [suporte a múltiplos idiomas] | ✅ |
+| Endpoints de Health Check | ⏳ |
+| Integração com sonarcloud | ⏳ |
 | Static Application Security Testing (SAST) | ❌ |
-| Continuous Integration (Artifact Deploy) | ⏳ |
-| Swagger generation strategy | ⏳ |
-| Architecture unit Testing (ArchUnit) | ❌ |
-| UseCases implementation | ⏳ |
-| Infra implementation | ⏳ |
-| Entrypoint implementation | ⏳ |
-| Dependency Injection | ⏳ |
-| Unit and Integration Testing strategy | ⏳ |
-| Mutation Testing [configuration + pipeline] | ⏳ |
-| Configuration Manager provisioning | ❌ |
-| Secrets Manager provisioning | ❌ |
-| Domain Name System (DNS) reservation | ❌ |
-| Continuous Deployment (manifests, configuration and approvals) | ❌ |
+| Integração Contínua (Artifact Deploy) | ⏳ |
+| Estratégia de geração Swagger | ⏳ |
+| Testes unitários de Arquitetura (ArchUnit) | ❌ |
+| Implementação de UseCases | ⏳ |
+| Implementação de Infra | ⏳ |
+| Implementação de Entrypoint | ⏳ |
+| Injeção de Dependência | ⏳ |
+| Estratégia de Testes Unitários e de Integração | ⏳ |
+| Mutation Testing [configuração + pipeline] | ⏳ |
+| Provisionamento de Configuration Manager | ❌ |
+| Provisionamento de Secrets Manager | ❌ |
+| Reserva de DNS (Domain Name System) | ❌ |
+| Continuous Deployment (manifests, configuração e aprovações) | ❌ |
 | Smoke Test | ⏳ |
-| Unit/Integration Testing Coverage to 100% | ⏳ |
-| Mutation Testing Coverage to 100% | ⏳ |
-| Performance Testing | ⏳ |
-| Observability | ⏳ | 
-| Technical Documentation (README.md, etc...) | ⏳ |
+| Cobertura de Testes Unitários/Integração em 100% | ⏳ |
+| Cobertura de Mutation Testing em 100% | ⏳ |
+| Testes de Performance | ⏳ |
+| Observabilidade | ⏳ | 
+| Documentação Técnica (README.md, etc...) | ⏳ |
 
 ## Technology stack
 
@@ -76,44 +76,44 @@ Este projeto implementa os princípios da Clean Architecture utilizando .NET Cor
 ## Solution Structure
 
 ##### Core: Entities
-* Represent your domain object
-* Apply only logic that is applicable in general to the whole entity
+* Representam seu objeto de domínio.
+* Aplicam apenas a lógica que é aplicável de forma geral a toda a entidade.
 
 ##### Core: Use Cases
-* Represent your business actions, it’s what you can do with the application. Expect one use case for each business action.
-* Pure business logic
-* Define interfaces for the data that they need in order to apply some logic. One or more providers will implement the interface, but the use case doesn’t know where the data is coming from.
-* The use case doesn't know who triggered it and how the results are going to be presented.
-* Throws business exceptions.
+* Representam as ações de negócio; o que é possível fazer com a aplicação. Espere um use case para cada ação de negócio.
+* Lógica de negócio pura.
+* Definem interfaces para os dados de que precisam para aplicar alguma lógica. Um ou mais providers irão implementar essas interfaces, mas o use case não sabe de onde os dados vêm.
+* O use case não sabe quem o acionou nem como os resultados serão apresentados.
+* Lança exceções de negócio.
 
 ##### Providers
-* Retrieve and store data from and to a number of sources (database, network devices, file system, 3rd parties, etc.)
-* Implement the interfaces defined by the use case
-* Use whatever framework is most appropriate (they are going to be isolated here anyway).
-* Note: if using an ORM for database access, here you'd have another set of objects in order to represent the mapping to the tables (don't use the core entities as they might be very different).
+* Recuperam e armazenam dados de diferentes fontes (banco de dados, dispositivos de rede, sistema de arquivos, terceiros etc.).
+* Implementam as interfaces definidas pelo use case.
+* Usam o framework que for mais apropriado (vão estar isolados aqui de qualquer forma).
+* Observação: se estiver usando um ORM para acesso ao banco, aqui você teria outro conjunto de objetos para representar o mapeamento para as tabelas (não use as entidades do core, pois elas podem ser muito diferentes).
 
 ##### Entrypoints
-* They are ways of interacting with the application, and typically involve a delivery mechanism (e.g. REST APIs, scheduled jobs, GUI, other systems).
-* Trigger a use case and convert the result to the appropriate format for the delivery mechanism
-* A GUI would use MVC (or MVP) in here; the controller would trigger a use case
+* São as formas de interagir com a aplicação e, geralmente, envolvem um mecanismo de entrega (por exemplo, REST APIs, jobs agendados, GUI, outros sistemas).
+* Acionam um use case e convertem o resultado para o formato adequado ao mecanismo de entrega.
+* Em uma GUI, usaríamos MVC (ou MVP); o controller acionaria um use case.
 
 ##### Configuration
-* Wires everything together.
-* Frameworks (e.g. for dependency injection) are isolated here
-* Has the "dirty details" like Main class, web server configuration, datasource configuration, etc.
+* Faz a ligação de tudo.
+* Os frameworks (por exemplo, para injeção de dependência) ficam isolados aqui.
+* Possui os “detalhes sujos” como a classe Main, configuração do servidor web, configuração de datasources, etc.
 
 ## Testing Strategy
 ##### Unit Tests
-* for TDD (a.k.a. Tests first, to drive design).
-* Cover every little detail, aim for 100% coverage.
-* “Dev to dev” documentation: What should this class do?
-* Test individual classes in isolation, very fast.
+* Para TDD (ou seja, testes primeiro, para conduzir o design).
+* Cobrir todos os pequenos detalhes, buscando 100% de cobertura.
+* “Documentação de Dev para Dev”: O que essa classe deve fazer?
+* Testa classes individuais de forma isolada, muito rápido.
 
 ##### Integration Tests
-* Test integration with slow parts (http, database, etc.)
-* “Dev” documentation: Does this work as expected?
-* Test one layer in isolation (e.g. only rest endpoint, or only data provider). Slow
-* Use whatever library makes it easy.
+* Testam a integração com partes lentas (http, banco de dados, etc.).
+* “Documentação para Dev”: Isto funciona conforme o esperado?
+* Testa uma camada de forma isolada (por exemplo, somente endpoint REST ou somente data provider). É mais lento.
+* Use qualquer biblioteca que facilite isso.
 
 ## Mutation Reports
 * [Core](https://jtsato.github.io/fms-transaction-api-netcore/mutation-reports/Core/mutation-report.html)
@@ -123,24 +123,24 @@ Este projeto implementa os princípios da Clean Architecture utilizando .NET Cor
 ***
 
 ## Building and Running the solution
-* cleaning the solution:
+* Limpando a solução:
 ```
 dotnet clean
 ```
-* building the solution:
+* Construindo a solução:
 ```
 dotnet build
 ```
-* running unit tests:
+* Executando testes unitários:
 ```
 dotnet test --nologo -v q
 ```
-* running mutation tests:
+* Executando testes de mutação:
 ```
 cd UnitTest.Core
 dotnet stryker
 ```
-* starting the solution:
+* Iniciando a solução:
 ```
 cd EntryPoint.WebApi/bin/Debug/net8.0
 dotnet EntryPoint.WebApi.dll
@@ -148,13 +148,13 @@ dotnet EntryPoint.WebApi.dll
 ***
 
 ## Resources
-##### Blogs & Articles
+##### Blogs & Artigos
 * The Clean Architecture https://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html
 * Screaming Architecture http://blog.8thlight.com/uncle-bob/2011/09/30/Screaming-Architecture.html
 * NODB https://blog.8thlight.com/uncle-bob/2012/05/15/NODB.html
 * Hexagonal Architecture http://alistair.cockburn.us/Hexagonal+architecture
 
-##### Videos & Presentations
+##### Vídeos & Apresentações
 * Clean Architecture https://www.youtube.com/results?search_query=clean+architecture
 * Screaming Architecture http://www.infoq.com/presentations/Screaming-Architecture
 
