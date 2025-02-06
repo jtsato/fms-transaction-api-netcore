@@ -1,7 +1,7 @@
 # transactions-api-netcore
 This is a sample project to demonstrate the Clean Architecture principles using .NET Core 7.0
 
-![CI](https://github.com/jtsato/transactions-api-netcore/actions/workflows/continuous-integration.yml/badge.svg)
+[![CI](https://github.com/jtsato/fms-transaction-api-netcore/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/jtsato/fms-transaction-netcore/actions/workflows/continuous-integration.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=jtsato_transactions-api-netcore&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=jtsato_transactions-api-netcore)
 
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=jtsato_transactions-api-netcore&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=jtsato_transactions-api-netcore)
