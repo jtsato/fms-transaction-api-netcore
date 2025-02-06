@@ -116,9 +116,9 @@ This is a sample project to demonstrate the Clean Architecture principles using 
 * Use whatever library makes it easy.
 
 ## Mutation Reports
-* [Core](https://jtsato.github.io/transactions-api-netcore/Core/mutation-report.html)
-* [EntryPoint.WebApi](https://jtsato.github.io/transactions-api-netcore/EntryPoint.WebApi/mutation-report.html)
-* [Infra.MongoDB](https://jtsato.github.io/transactions-api-netcore/Infra.MongoDB/mutation-report.html)
+* [Core](https://jtsato.github.io/fms-transaction-api-netcore/mutation-reports/Core/mutation-report.html)
+* [EntryPoint.WebApi](https://jtsato.github.io/fms-transaction-api-netcore/mutation-reports/EntryPoint.WebApi/mutation-report.html)
+* [Infra.MongoDB](https://jtsato.github.io/fms-transaction-api-netcore/mutation-reports/Infra.MongoDB/mutation-report.html)
 
 ***
 
@@ -142,7 +142,7 @@ dotnet stryker
 ```
 * starting the solution:
 ```
-cd EntryPoint.WebApi/bin/Debug/net7.0
+cd EntryPoint.WebApi/bin/Debug/net8.0
 dotnet EntryPoint.WebApi.dll
 ```
 ***
