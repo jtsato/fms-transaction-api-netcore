@@ -22,7 +22,9 @@
 
     <ItemGroup>
       <Folder Include="Domains\Mappers\" />
+      <Folder Include="Domains\Models\" />
       <Folder Include="Domains\Providers\" />
+      <Folder Include="Domains\Repositories\" />
     </ItemGroup>
 
 </Project>

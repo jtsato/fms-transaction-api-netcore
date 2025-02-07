@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Data;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using Infra.PostgreSQL.Commons.Repository;
-using Infra.PostgreSQL.Domains.Models;
-using Infra.PostgreSQL.Domains.Repositories;
-using static Dapper.SqlMapper;
 
 namespace Infra.PostgreSQL.Commons.Context
 {
@@ -19,8 +14,8 @@ namespace Infra.PostgreSQL.Commons.Context
         private IDbConnection _connection;
         private IDbTransaction _transaction;
 
-        public IRepository<ConfigurationEntity> Configurations { get; }
-        public IRepository<ChangeRequestEntity> ChangeRequests { get; }
+        // public IRepository<ConfigurationEntity> Configurations { get; }
+        // public IRepository<ChangeRequestEntity> ChangeRequests { get; }
 
         private bool _disposed;
 
@@ -33,8 +28,8 @@ namespace Infra.PostgreSQL.Commons.Context
         {
             _id = Guid.NewGuid();
             DbContext = dbContext;
-            Configurations = new ConfigurationRepository(this);
-            ChangeRequests = new ChangeRequestRepository(this);
+            // Configurations = new ConfigurationRepository(this);
+            // ChangeRequests = new ChangeRequestRepository(this);
         }
 
         [ExcludeFromCodeCoverage]

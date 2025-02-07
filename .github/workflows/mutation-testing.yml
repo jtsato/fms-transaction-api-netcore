@@ -52,23 +52,23 @@ jobs:
           docker-compose version
 
       - name: Start MongoDB Container
-        run: docker-compose -f IntegrationTest.Infra.MongoDB/docker-compose.yml up -d
+        run: docker-compose -f src/test/IntegrationTest.Infra.MongoDB/docker-compose.yml up -d
 
       - name: Resolve dependencies
         run: dotnet restore --force --no-cache
 
       - name: Hack [issue "MSB3026 Unable to copy file" for EmbeddedResources]
         run: |
-          mkdir -p IntegrationTest.EntryPoint.WebApi/bin/Debug/net8.0/pt-br 
-          mkdir -p IntegrationTest.EntryPoint.WebApi/bin/Debug/net8.0/en-us
-          mkdir -p IntegrationTest.EntryPoint.WebApi/bin/Release/net8.0/pt-br 
-          mkdir -p IntegrationTest.EntryPoint.WebApi/bin/Release/net8.0/en-us
+          mkdir -p src/test/IntegrationTest.EntryPoint.WebApi/bin/Debug/net8.0/pt-br 
+          mkdir -p src/test/IntegrationTest.EntryPoint.WebApi/bin/Debug/net8.0/en-us
+          mkdir -p src/test/IntegrationTest.EntryPoint.WebApi/bin/Release/net8.0/pt-br 
+          mkdir -p src/test/IntegrationTest.EntryPoint.WebApi/bin/Release/net8.0/en-us
 
       - name: Build in Debug Mode
         run: dotnet build --configuration Debug --no-restore
 
       - name: Mutation [Core]
-        working-directory: ./UnitTest.Core
+        working-directory: ./src/test/UnitTest.Core
         run: |
           dotnet new tool-manifest
           dotnet tool install dotnet-stryker --version 4.5.1
@@ -80,7 +80,7 @@ jobs:
           find ./UnitTest.Core/StrykerOutput -name '*.html' -exec cp -prv '{}' './docs/mutation-reports/Core' ';'
 
       - name: Mutation [EntryPoint WebApi]
-        working-directory: ./IntegrationTest.EntryPoint.WebApi
+        working-directory: ./src/test/IntegrationTest.EntryPoint.WebApi
         run: |
           dotnet new tool-manifest
           dotnet tool install dotnet-stryker --version 4.5.1
@@ -92,7 +92,7 @@ jobs:
           find ./IntegrationTest.EntryPoint.WebApi/StrykerOutput -name '*.html' -exec cp -prv '{}' './docs/mutation-reports/EntryPoint.WebApi' ';'
 
       - name: Mutation [Infra MongoDB]
-        working-directory: ./IntegrationTest.Infra.MongoDB
+        working-directory: ./src/test/IntegrationTest.Infra.MongoDB
         run: |
           dotnet new tool-manifest
           dotnet tool install dotnet-stryker --version 4.5.1
@@ -132,5 +132,5 @@ jobs:
       - name: Environment Teardown
         if: always()
         run: |
-          docker-compose -f IntegrationTest.Infra.MongoDB/docker-compose.yml down
+          docker-compose -f src/test/IntegrationTest.Infra.MongoDB/docker-compose.yml down
           echo "Environment Teardown"

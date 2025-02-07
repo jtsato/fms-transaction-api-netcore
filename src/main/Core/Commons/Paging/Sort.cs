@@ -10,9 +10,9 @@ public sealed class Sort
 {
     private const Direction DefaultDirection = Direction.Asc;
     public static readonly Sort Unsorted = By(Array.Empty<Order>());
-    private readonly IReadOnlyCollection<Order> _orders;
+    private readonly List<Order> _orders;
 
-    private Sort(IReadOnlyCollection<Order> orders)
+    private Sort(List<Order> orders)
     {
         _orders = orders;
     }
@@ -35,7 +35,7 @@ public sealed class Sort
     {
         ArgumentValidator.CheckNull(orders, nameof(orders), "Orders must not be null!");
 
-        return new Sort(orders);
+        return new Sort(orders.ToList());
     }
 
     public static Sort By(IReadOnlyCollection<Order> orders)
@@ -45,7 +45,7 @@ public sealed class Sort
         return By(orders.ToArray());
     }
 
-    public IEnumerable<Order> GetOrders()
+    public List<Order> GetOrders()
     {
         return _orders;
     }
