@@ -38,7 +38,7 @@ jobs:
           docker-compose version
 
       - name: Start MongoDB Container
-        run: docker-compose -f IntegrationTest.Infra.MongoDB/docker-compose.yml up -d
+        run: docker-compose -f src/test/IntegrationTest.Infra.MongoDB/docker-compose.yml up -d
 
       - name: Resolve dependencies
         run: dotnet restore --force --no-cache
@@ -101,5 +101,5 @@ jobs:
       - name: Environment Teardown
         if: always()
         run: |
-          docker-compose -f IntegrationTest.Infra.MongoDB/docker-compose.yml down -v --remove-orphans
+          docker-compose -f src/test/IntegrationTest.Infra.MongoDB/docker-compose.yml down -v --remove-orphans
           echo "Environment Teardown"
