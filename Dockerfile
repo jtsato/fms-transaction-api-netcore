@@ -4,35 +4,37 @@ WORKDIR /app
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /source
 
-COPY ["Core/Core.csproj", "./Core/"]
-COPY ["Infra.MongoDB/Infra.MongoDB.csproj", "./Infra.MongoDB/"]
-COPY ["EntryPoint.WebApi/EntryPoint.WebApi.csproj", "./EntryPoint.WebApi/"]
+COPY ["src/main/Core/Core.csproj", "./Core/"]
+COPY ["src/main/Infra.PostgreSql/Infra.PostgreSql.csproj", "./Infra.PostgreSql/"]
+COPY ["src/main/EntryPoint.WebApi/EntryPoint.WebApi.csproj", "./EntryPoint.WebApi/"]
 
-RUN dotnet restore "./EntryPoint.WebApi/EntryPoint.WebApi.csproj" --force --no-cache
+RUN dotnet restore "./EntryPoint.WebApi/EntryPoint.WebApi.csproj" --no-cache
 
-COPY ./Core/. ./Core/
-COPY ./Infra.MongoDB/. ./Infra.MongoDB/
-COPY ./EntryPoint.WebApi/. ./EntryPoint.WebApi/
+COPY ./src/main/Core/. ./Core/
+COPY ./src/main/Infra.PostgreSql/. ./Infra.PostgreSql/
+COPY ./src/main/EntryPoint.WebApi/. ./EntryPoint.WebApi/
 
-WORKDIR "/source/EntryPoint.WebApi"
 FROM build AS publish
-RUN dotnet publish "EntryPoint.WebApi.csproj" -c Release -o /app/publish
+WORKDIR /source/EntryPoint.WebApi
+RUN dotnet publish "EntryPoint.WebApi.csproj" -c Release --no-restore -o /app/publish
 
 FROM base AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "EntryPoint.WebApi.dll"]
 
-ENV COMPlus_EnableDiagnostics=0
+ENV COMPlus_EnableDiagnostics=0 \
+    ASPNETCORE_URLS=http://*:8000
+
+COPY --from=publish /app/publish .
 
 EXPOSE 8000
-ENV ASPNETCORE_URLS=http://*:8000
 
-RUN addgroup --group ragnarok --gid 2000 \
-&& adduser \
-    --uid 1000 \
-    --gid 2000 \
-    "surtur" 
+RUN addgroup --gid 2000 ragnarok && \
+    adduser --disabled-password --gecos "" --uid 1000 --gid 2000 surtur && \
+    chown -R surtur:ragnarok /app
 
-RUN chown surtur:ragnarok /app
 USER surtur:ragnarok
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
+  CMD curl -f http://localhost:8000/health || exit 1
+
+ENTRYPOINT ["dotnet", "EntryPoint.WebApi.dll"]

@@ -52,7 +52,7 @@ jobs:
           docker-compose version
 
       - name: Start MongoDB Container
-        run: docker-compose -f src/test/IntegrationTest.Infra.MongoDB/docker-compose.yml up -d
+        run: docker-compose -f src/test/IntegrationTest.Infra.PostgreSql/docker-compose.yml up -d
 
       - name: Resolve dependencies
         run: dotnet restore --force --no-cache
@@ -92,7 +92,7 @@ jobs:
           find ./IntegrationTest.EntryPoint.WebApi/StrykerOutput -name '*.html' -exec cp -prv '{}' './docs/mutation-reports/EntryPoint.WebApi' ';'
 
       - name: Mutation [Infra MongoDB]
-        working-directory: ./src/test/IntegrationTest.Infra.MongoDB
+        working-directory: ./src/test/IntegrationTest.Infra.PostgreSql
         run: |
           dotnet new tool-manifest
           dotnet tool install dotnet-stryker --version 4.5.1
@@ -100,8 +100,8 @@ jobs:
 
       - name: Copy report to right place [Infra MongoDB]
         run: |
-          mkdir -p ./docs/mutation-reports/Infra.MongoDB
-          find ./IntegrationTest.Infra.MongoDB/StrykerOutput -name '*.html' -exec cp -prv '{}' './docs/mutation-reports/Infra.MongoDB' ';'
+          mkdir -p ./docs/mutation-reports/Infra.PostgreSql
+          find ./IntegrationTest.Infra.PostgreSql/StrykerOutput -name '*.html' -exec cp -prv '{}' './docs/mutation-reports/Infra.PostgreSql' ';'
 
       - name: Check for changes
         run: |
@@ -132,5 +132,5 @@ jobs:
       - name: Environment Teardown
         if: always()
         run: |
-          docker-compose -f src/test/IntegrationTest.Infra.MongoDB/docker-compose.yml down
+          docker-compose -f src/test/IntegrationTest.Infra.PostgreSql/docker-compose.yml down
           echo "Environment Teardown"

@@ -119,7 +119,7 @@ Este projeto implementa os princípios da Clean Architecture utilizando .NET Cor
 ## Mutation Reports
 * [Core](https://jtsato.github.io/fms-transaction-api-netcore/mutation-reports/Core/mutation-report.html)
 * [EntryPoint.WebApi](https://jtsato.github.io/fms-transaction-api-netcore/mutation-reports/EntryPoint.WebApi/mutation-report.html)
-* [Infra.MongoDB](https://jtsato.github.io/fms-transaction-api-netcore/mutation-reports/Infra.MongoDB/mutation-report.html)
+* [Infra.PostgreSql](https://jtsato.github.io/fms-transaction-api-netcore/mutation-reports/Infra.PostgreSql/mutation-report.html)
 
 ***
 

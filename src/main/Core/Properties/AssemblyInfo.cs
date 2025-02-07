@@ -1,4 +1,4 @@
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("UnitTest.Core")]
-[assembly: InternalsVisibleTo("IntegrationTest.Infra.MongoDB")]
+[assembly: InternalsVisibleTo("IntegrationTest.Infra.PostgreSql")]
