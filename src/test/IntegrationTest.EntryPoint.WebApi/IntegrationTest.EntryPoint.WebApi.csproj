@@ -32,7 +32,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\EntryPoint.WebApi\EntryPoint.WebApi.csproj"/>
+        <ProjectReference Include="..\..\main\EntryPoint.WebApi\EntryPoint.WebApi.csproj"/>
     </ItemGroup>
 
     <ItemGroup>

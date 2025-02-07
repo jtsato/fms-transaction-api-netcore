@@ -1,20 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{3560E599-A3C7-4636-9904-66CA5C998E3D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "src\main\Core\Core.csproj", "{3560E599-A3C7-4636-9904-66CA5C998E3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest.Core", "UnitTest.Core\UnitTest.Core.csproj", "{F376B501-6AAA-4DC3-9945-DCE3BEB500C8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest.Core", "src\test\UnitTest.Core\UnitTest.Core.csproj", "{F376B501-6AAA-4DC3-9945-DCE3BEB500C8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "main", "main", "{A460C396-DE15-470E-9214-582C3EBB7AD5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{A5454FB6-9466-44AB-9DF8-B7960CFFBFFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntryPoint.WebApi", "EntryPoint.WebApi\EntryPoint.WebApi.csproj", "{FACC4BF4-B3CE-4FBE-A172-559909B9DA9A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntryPoint.WebApi", "src\main\EntryPoint.WebApi\EntryPoint.WebApi.csproj", "{FACC4BF4-B3CE-4FBE-A172-559909B9DA9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTest.EntryPoint.WebApi", "IntegrationTest.EntryPoint.WebApi\IntegrationTest.EntryPoint.WebApi.csproj", "{DC186A75-473F-4EC1-A84D-CF9CCFDDCA07}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTest.EntryPoint.WebApi", "src\test\IntegrationTest.EntryPoint.WebApi\IntegrationTest.EntryPoint.WebApi.csproj", "{DC186A75-473F-4EC1-A84D-CF9CCFDDCA07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.MongoDB", "Infra.MongoDB\Infra.MongoDB.csproj", "{BCB1B75E-5FE5-4E84-A0EC-23B5640132D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.MongoDB", "src\main\Infra.MongoDB\Infra.MongoDB.csproj", "{BCB1B75E-5FE5-4E84-A0EC-23B5640132D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTest.Infra.MongoDB", "IntegrationTest.Infra.MongoDB\IntegrationTest.Infra.MongoDB.csproj", "{94262D47-BFFA-4498-B33F-DD862E23A834}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTest.Infra.MongoDB", "src\test\IntegrationTest.Infra.MongoDB\IntegrationTest.Infra.MongoDB.csproj", "{94262D47-BFFA-4498-B33F-DD862E23A834}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

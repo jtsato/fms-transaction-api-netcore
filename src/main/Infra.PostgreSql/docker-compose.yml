@@ -1,0 +1,32 @@
+version: '3.7'
+services:
+  postgres:
+    image: postgres:11.22-bullseye
+    restart: always
+    environment:
+      - POSTGRES_DB=development
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    ports:
+      - '5438:5432'
+    volumes:
+      # copy the sql script to initialize the database
+      - ./infra_init.sql:/docker-entrypoint-initdb.d/infra_init.sql
+    command: [ "postgres", "-c", "log_statement=all" ]
+
+  pgbouncer:
+    image: edoburu/pgbouncer:latest
+    environment:
+      - DB_HOST=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - POOL_MODE=session
+      # https://youtu.be/ddKm7a7xOpk?t=798
+    ports:
+      - '6438:5432'
+    depends_on:
+      - postgres

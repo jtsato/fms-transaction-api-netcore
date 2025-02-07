@@ -1,0 +1,7 @@
+﻿{
+  "DOCKER_COMPOSE_FILE": "../IntegrationTest.Fixture/docker-compose.yml",
+  "DB_CONNECTION_STRING": "Server=127.0.0.1;Port=6437;Database=xunit_test;User Id=xunit;Password=xunit;",
+  "CONFIGURATION_TABLE_NAME": "configurations",
+  "CHANGE_REQUEST_TABLE_NAME": "change_requests",
+  "SHOULD_START_CONTAINER_ON_TEST": "true"
+}

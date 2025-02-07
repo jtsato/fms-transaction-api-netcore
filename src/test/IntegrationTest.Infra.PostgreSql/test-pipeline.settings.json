@@ -1,0 +1,7 @@
+﻿{
+  "DOCKER_COMPOSE_FILE": "N/A The docker-compose file is in test/IntegrationTest.Fixture/docker-compose.yml",
+  "DB_CONNECTION_STRING": "Server=pgbouncer;Port=5432;Database=xunit_test;User Id=xunit;Password=xunit;",
+  "CONFIGURATION_TABLE_NAME": "configurations",
+  "CHANGE_REQUEST_TABLE_NAME": "change_requests",
+  "SHOULD_START_CONTAINER_ON_TEST": "false"
+}
