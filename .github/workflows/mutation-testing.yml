@@ -77,7 +77,7 @@ jobs:
       - name: Copy report to right place [Core]
         run: |
           mkdir -p ./docs/mutation-reports/Core
-          find ./UnitTest.Core/StrykerOutput -name '*.html' -exec cp -prv '{}' './docs/mutation-reports/Core' ';'
+          find ./src/test/UnitTest.Core/StrykerOutput -name '*.html' -exec cp -prv '{}' './docs/mutation-reports/Core' ';'
 
       - name: Mutation [EntryPoint WebApi]
         working-directory: ./src/test/IntegrationTest.EntryPoint.WebApi
@@ -89,7 +89,7 @@ jobs:
       - name: Copy report to right place [WebApi]
         run: |
           mkdir -p ./docs/mutation-reports/EntryPoint.WebApi
-          find ./IntegrationTest.EntryPoint.WebApi/StrykerOutput -name '*.html' -exec cp -prv '{}' './docs/mutation-reports/EntryPoint.WebApi' ';'
+          find ./src/test/IntegrationTest.EntryPoint.WebApi/StrykerOutput -name '*.html' -exec cp -prv '{}' './docs/mutation-reports/EntryPoint.WebApi' ';'
 
       - name: Mutation [Infra MongoDB]
         working-directory: ./src/test/IntegrationTest.Infra.PostgreSql
@@ -101,7 +101,7 @@ jobs:
       - name: Copy report to right place [Infra MongoDB]
         run: |
           mkdir -p ./docs/mutation-reports/Infra.PostgreSql
-          find ./IntegrationTest.Infra.PostgreSql/StrykerOutput -name '*.html' -exec cp -prv '{}' './docs/mutation-reports/Infra.PostgreSql' ';'
+          find ./src/test/IntegrationTest.Infra.PostgreSql/StrykerOutput -name '*.html' -exec cp -prv '{}' './docs/mutation-reports/Infra.PostgreSql' ';'
 
       - name: Check for changes
         run: |

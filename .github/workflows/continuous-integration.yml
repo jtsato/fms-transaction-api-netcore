@@ -61,22 +61,22 @@ jobs:
 
       - name: Hack [issue "MSB3026 Unable to copy file" for EmbeddedResources]
         run: |
-          mkdir -p IntegrationTest.EntryPoint.WebApi/bin/Debug/net8.0/pt-br 
-          mkdir -p IntegrationTest.EntryPoint.WebApi/bin/Debug/net8.0/en-us
-          mkdir -p IntegrationTest.EntryPoint.WebApi/bin/Release/net8.0/pt-br 
-          mkdir -p IntegrationTest.EntryPoint.WebApi/bin/Release/net8.0/en-us
+          mkdir -p src/test/IntegrationTest.EntryPoint.WebApi/bin/Debug/net8.0/pt-br 
+          mkdir -p src/test/IntegrationTest.EntryPoint.WebApi/bin/Debug/net8.0/en-us
+          mkdir -p src/test/IntegrationTest.EntryPoint.WebApi/bin/Release/net8.0/pt-br 
+          mkdir -p src/test/IntegrationTest.EntryPoint.WebApi/bin/Release/net8.0/en-us
 
       - name: Build in Debug Mode
         run: dotnet build --configuration Debug --no-restore
 
       - name: Test [Core]
-        run: dotnet test ./UnitTest.Core/UnitTest.Core.csproj --configuration Debug --no-build --nologo -v n
+        run: dotnet test ./src/test/UnitTest.Core/UnitTest.Core.csproj --configuration Debug --no-build --nologo -v n
 
       - name: Test [EntryPoint.WebApi]
-        run: dotnet test ./IntegrationTest.EntryPoint.WebApi/IntegrationTest.EntryPoint.WebApi.csproj --configuration Debug --no-build --nologo -v n
+        run: dotnet test ./src/test/IntegrationTest.EntryPoint.WebApi/IntegrationTest.EntryPoint.WebApi.csproj --configuration Debug --no-build --nologo -v n
 
       - name: Test [Infra.PostgreSql]
-        run: dotnet test ./IntegrationTest.Infra.PostgreSql/IntegrationTest.Infra.PostgreSql.csproj --configuration Debug --no-build --nologo -v n
+        run: dotnet test ./src/test/IntegrationTest.Infra.PostgreSql/IntegrationTest.Infra.PostgreSql.csproj --configuration Debug --no-build --nologo -v n
 
       - name: Environment Teardown
         if: always()

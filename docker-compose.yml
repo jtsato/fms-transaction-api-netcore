@@ -1,15 +1,17 @@
 ﻿version: "3.7"
 services:
-  local.webapi.mongodb:
-    image: mongo:latest
+  local.webapi.postgresql:
+    image: postgres:latest
     restart: always
     ports:
-      - "27019:27017"
+      - "5432:5432"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: root
+      POSTGRES_DB: "transactions"
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "root"
     volumes:
-      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ./postgres-data:/var/lib/postgresql/data
+  
   local.webapi:
     build:
       context: .
@@ -17,13 +19,9 @@ services:
     ports:
       - "8088:80"
     environment:
-      # Copy .env variables through to container
       TZ: America/Sao_Paulo
       ASPNETCORE_ENVIRONMENT: "Development"
       ASPNETCORE_URLS: "http://+:80"
-      MONGODB_URL: "mongodb://container:container@local.webapi.mongodb:27017/transactions-mongodb"
-      MONGODB_DATABASE_NAME: "transactions-mongodb"
-      PROPERTY_COLLECTION_NAME: "transactions"
-      PROPERTY_SEQUENCE_COLLECTION_NAME: "transactions_sequences"
+      POSTGRES_CONNECTION_STRING: "Host=local.webapi.postgresql;Port=5432;Database=transactions;User Id=root;Password=root;"
     depends_on:
-      - local.webapi.mongodb
+      - local.webapi.postgresql

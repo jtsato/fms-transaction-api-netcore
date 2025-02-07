@@ -35,6 +35,6 @@ RUN addgroup --gid 2000 ragnarok && \
 USER surtur:ragnarok
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
-  CMD curl -f http://localhost:8000/health || exit 1
+  CMD curl -f http://localhost:8000/health-check/live || exit 1
 
 ENTRYPOINT ["dotnet", "EntryPoint.WebApi.dll"]
