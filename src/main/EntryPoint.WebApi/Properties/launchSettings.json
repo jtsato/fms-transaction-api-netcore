@@ -19,7 +19,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "MONGODB_URL": "mongodb+srv://mongodb+srv://container:container@localhost:27019/balances-mongodb/transactions-mongodb?retryWrites=true&w=majority",
         "MONGODB_DATABASE": "transactions-mongodb",
-        "TRANSACTION_COLLECTION_NAME":"transactions",
+        "TRANSACTION_TABLE_NAME":"transactions",
         "TRANSACTION_SEQUENCE_COLLECTION_NAME": "transactions_sequences"
       }
     },
@@ -33,7 +33,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "MONGODB_URL": "mongodb+srv://mongodb+srv://container:container@localhost:27019/balances-mongodb/transactions-mongodb?retryWrites=true&w=majority",
         "MONGODB_DATABASE": "transactions-mongodb",
-        "TRANSACTION_COLLECTION_NAME":"transactions",
+        "TRANSACTION_TABLE_NAME":"transactions",
         "TRANSACTION_SEQUENCE_COLLECTION_NAME": "transactions_sequences"
       }
     },
@@ -45,7 +45,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "MONGODB_URL": "mongodb+srv://mongodb+srv://container:container@localhost:27019/balances-mongodb/transactions-mongodb?retryWrites=true&w=majority",
         "MONGODB_DATABASE": "transactions-mongodb",
-        "TRANSACTION_COLLECTION_NAME":"transactions",
+        "TRANSACTION_TABLE_NAME":"transactions",
         "TRANSACTION_SEQUENCE_COLLECTION_NAME": "transactions_sequences"
       }
     }

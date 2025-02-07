@@ -19,7 +19,7 @@ public static class DependencyInjector
         Environment.GetEnvironmentVariable("MONGODB_DATABASE") ?? string.Empty;
 
     private static readonly string CollectionName =
-        Environment.GetEnvironmentVariable("TRANSACTION_COLLECTION_NAME") ?? string.Empty;
+        Environment.GetEnvironmentVariable("TRANSACTION_TABLE_NAME") ?? string.Empty;
 
     public static Dictionary<Type, ServiceLifetime> ConfigureServices(IServiceCollection services)
     {
