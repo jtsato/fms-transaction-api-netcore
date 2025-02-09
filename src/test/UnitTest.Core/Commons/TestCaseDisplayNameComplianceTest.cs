@@ -24,7 +24,7 @@ public sealed class TestCaseDisplayNameComplianceTest
     }
 
     [Trait("Category", "Core Business tests")]
-    [Theory(DisplayName = "Successful to validate if method name and display name match", Skip = "This test is not ready to run")]
+    [Theory(DisplayName = "Successful to validate if method name and display name match")]
     [InlineData("[Fact(DisplayName = \"", "\")]")]
     [InlineData("[Theory(DisplayName = \"", "\")]")]
     public void SuccessfulToValidateIfMethodNameAndDisplayNameMatch(string stringPrefixSearch, string stringSuffixSearch)

@@ -10,14 +10,13 @@ namespace IntegrationTest.EntryPoint.WebApi.Commons;
 [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
 public sealed class CoreMessageKeysFixture : IDisposable
 {
-    private const string CurrentProjectName = "IntegrationTest.EntryPoint.WebApi";
-    private readonly string _projectRootFolder = Directory.GetCurrentDirectory().SubstringBefore(CurrentProjectName);
-
+    private static readonly string CoreProjectFolder = GetProjectsByCsprojFile.Projects["Core"];
+    private static readonly string CoreDomainFolder = $"{CoreProjectFolder}/Domains";
+    
     private List<string> _messageKeys;
 
     private bool _disposed;
 
-    [ExcludeFromCodeCoverage]
     ~CoreMessageKeysFixture() => Dispose(false);
 
     public void Dispose()
@@ -26,15 +25,21 @@ public sealed class CoreMessageKeysFixture : IDisposable
         GC.SuppressFinalize(this);
     }
 
+    [ExcludeFromCodeCoverage]
+    private void Dispose(bool disposing)
+    {
+        if (_disposed || !disposing) return;
+        _disposed = true;
+    }
+
     public IEnumerable<string> GetCoreProjectMessageKeys()
     {
-        return _messageKeys ??= LoadCoreProjectMessageKeys(_projectRootFolder);
+        return _messageKeys ??= LoadCoreProjectMessageKeys();
     }
-    
-    private static List<string> LoadCoreProjectMessageKeys(string projectRootFolder)
+
+    private static List<string> LoadCoreProjectMessageKeys()
     {
-        string[] pathToFiles =
-            Directory.GetFiles($"{projectRootFolder}Core/Domains", "*.cs", SearchOption.AllDirectories);
+        string[] pathToFiles = Directory.GetFiles(CoreDomainFolder, "*.cs", SearchOption.AllDirectories);
 
         List<string> messageKeys = (from pathToFile in pathToFiles
             from line in File.ReadLines(pathToFile)
@@ -46,12 +51,5 @@ public sealed class CoreMessageKeysFixture : IDisposable
         messageKeys.Sort();
 
         return messageKeys.Distinct().ToList();
-    }
-
-    [ExcludeFromCodeCoverage]
-    private void Dispose(bool disposing)
-    {
-        if (_disposed || !disposing) return;
-        _disposed = true;
     }
 }

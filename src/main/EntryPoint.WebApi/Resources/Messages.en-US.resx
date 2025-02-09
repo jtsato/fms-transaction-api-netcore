@@ -36,64 +36,31 @@
     <data name="CommonJsonPropertyWrongType" xml:space="preserve">
         <value>The property '{0}' has a value not compatible with it's expected types.</value>
     </data>
-    <data name="ValidationPropertyFromCreatedAtIsInvalid" xml:space="preserve">
-        <value>The initial 'created at' field is invalid.</value>
-    </data>
-    <data name="ValidationPropertyFromUpdatedAtIsInvalid" xml:space="preserve">
-        <value>The initial 'updated at' field is invalid.</value>
-    </data>
-    <data name="ValidationPropertyToCreatedAtIsInvalid" xml:space="preserve">
-        <value>The final 'created at' field is invalid.</value>
-    </data>
-    <data name="ValidationPropertyToUpdatedAtIsInvalid" xml:space="preserve">
-        <value>The final 'updated at' field is invalid.</value>
-    </data>
-    <data name="ValidationPropertyTransactionIsNullOrEmpty" xml:space="preserve">
-        <value>The advertise 'transaction' field is required.</value>
-    </data>
-    <data name="ValidationPropertyNotFound" xml:space="preserve">
-        <value>No property was found with uuid{0}.</value>
-    </data>
-    <data name="ValidationPropertyIdIsNullOrEmpty" xml:space="preserve">
+    <data name="ValidationTransactionAmountIsNullOrEmpty" xml:space="preserve">
         <value>The property id is required.</value>
     </data>
-    <data name="ValidationPropertyTypesAreInvalid" xml:space="preserve">
-        <value>The property 'types' field is required.</value>
-    </data>
-    <data name="ValidationPropertyTransactionIsInvalid" xml:space="preserve">
-        <value>The property 'transaction' field is invalid.</value>
-    </data>
-    <data name="ValidationPropertyNumberOfBedroomsIsInvalid" xml:space="preserve">
-        <value>The initial number of bedrooms cannot be greater than the maximum number of bedrooms.</value>
-    </data>
-    <data name="ValidationPropertyNumberOfToiletsIsInvalid" xml:space="preserve">
-        <value>The initial number of toilets cannot be greater than the maximum number of toilets.</value>
-    </data>
-    <data name="ValidationPropertyNumberOfGaragesIsInvalid" xml:space="preserve">
-        <value>The initial number of garages cannot be greater than the maximum number of garages.</value>
-    </data>
-    <data name="ValidationPropertyAreaIsInvalid" xml:space="preserve">
-        <value>The initial area cannot exceed the maximum allowed area.</value>
-    </data>
-    <data name="ValidationPropertyBuiltAreaIsInvalid" xml:space="preserve">
-        <value>The initial built area cannot exceed the maximum allowed built area.</value>
-    </data>
-    <data name="ValidationPropertySellingPriceIsInvalid" xml:space="preserve">
-        <value>The initial selling price cannot be greater than the maximum selling price.</value>
-    </data>
-    <data name="ValidationPropertyRentalTotalPriceIsInvalid" xml:space="preserve">
-        <value>The initial rental total price cannot be greater than the maximum rental total price.</value>
-    </data>
-    <data name="ValidationPropertyRentalPriceIsInvalid" xml:space="preserve">
-        <value>The initial rental price cannot be greater than the maximum rental price.</value>
-    </data>
-    <data name="ValidationPropertyPriceByM2IsInvalid" xml:space="preserve">
-        <value>The initial price per m2 cannot be greater than the maximum price per m2.</value>
-    </data>
-    <data name="ValidationPropertyStatusIsInvalid" xml:space="preserve">
+    <data name="ValidationTransactionStatusIsInvalid" xml:space="preserve">
         <value>The property 'status' field is invalid.</value>
     </data>
-    <data name="ValidationPropertyRankingIsInvalid" xml:space="preserve">
-        <value>The property 'ranking' field is invalid.</value>
+    <data name="ValidationTransactionAmountIsNotDouble" xml:space="preserve">
+        <value>The content of the 'amount' field in the transaction is invalid.</value>
+    </data>
+    <data name="ValidationTransactionDateIsInvalid" xml:space="preserve">
+        <value>The transaction 'date' field is invalid.</value>
+    </data>
+    <data name="ValidationTransactionDateIsNullOrEmpty" xml:space="preserve">
+        <value>The transaction 'date' field is required.</value>
+    </data>
+    <data name="ValidationTransactionDescriptionIsNullOrEmpty" xml:space="preserve">
+        <value>The transaction 'description' field is required.</value>
+    </data>
+    <data name="ValidationTransactionStatusIsNullOrEmpty" xml:space="preserve">
+        <value>The transaction 'status' field is required.</value>
+    </data>
+    <data name="ValidationTransactionTypeIsInvalid" xml:space="preserve">
+        <value>The transaction 'type' field is invalid.</value>
+    </data>
+    <data name="ValidationTransactionTypeIsNullOrEmpty" xml:space="preserve">
+        <value>The transaction 'type' field is required.</value>
     </data>
 </root>

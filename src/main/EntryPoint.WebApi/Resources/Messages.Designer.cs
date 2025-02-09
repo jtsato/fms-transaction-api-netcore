@@ -123,182 +123,83 @@ namespace EntryPoint.WebApi.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The initial area cannot exceed the maximum allowed area..
+        ///   Looks up a localized string similar to The content of the &apos;amount&apos; field in the transaction is invalid..
         /// </summary>
-        internal static string ValidationPropertyAreaIsInvalid {
+        internal static string ValidationTransactionAmountIsNotDouble {
             get {
-                return ResourceManager.GetString("ValidationPropertyAreaIsInvalid", resourceCulture);
+                return ResourceManager.GetString("ValidationTransactionAmountIsNotDouble", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The initial built area cannot exceed the maximum allowed built area..
+        ///   Looks up a localized string similar to The transaction &apos;amount&apos; field is required..
         /// </summary>
-        internal static string ValidationPropertyBuiltAreaIsInvalid {
+        internal static string ValidationTransactionAmountIsNullOrEmpty {
             get {
-                return ResourceManager.GetString("ValidationPropertyBuiltAreaIsInvalid", resourceCulture);
+                return ResourceManager.GetString("ValidationTransactionAmountIsNullOrEmpty", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The initial &apos;created at&apos; field is invalid..
+        ///   Looks up a localized string similar to The transaction &apos;date&apos; field is invalid..
         /// </summary>
-        internal static string ValidationPropertyFromCreatedAtIsInvalid {
+        internal static string ValidationTransactionDateIsInvalid {
             get {
-                return ResourceManager.GetString("ValidationPropertyFromCreatedAtIsInvalid", resourceCulture);
+                return ResourceManager.GetString("ValidationTransactionDateIsInvalid", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The initial &apos;updated at&apos; field is invalid..
+        ///   Looks up a localized string similar to The transaction &apos;date&apos; field is required..
         /// </summary>
-        internal static string ValidationPropertyFromUpdatedAtIsInvalid {
+        internal static string ValidationTransactionDateIsNullOrEmpty {
             get {
-                return ResourceManager.GetString("ValidationPropertyFromUpdatedAtIsInvalid", resourceCulture);
+                return ResourceManager.GetString("ValidationTransactionDateIsNullOrEmpty", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The property id is required..
+        ///   Looks up a localized string similar to The transaction &apos;description&apos; field is required..
         /// </summary>
-        internal static string ValidationPropertyIdIsNullOrEmpty {
+        internal static string ValidationTransactionDescriptionIsNullOrEmpty {
             get {
-                return ResourceManager.GetString("ValidationPropertyIdIsNullOrEmpty", resourceCulture);
+                return ResourceManager.GetString("ValidationTransactionDescriptionIsNullOrEmpty", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No property was found with uuid{0}..
+        ///   Looks up a localized string similar to The transaction &apos;status&apos; field is invalid..
         /// </summary>
-        internal static string ValidationPropertyNotFound {
+        internal static string ValidationTransactionStatusIsInvalid {
             get {
-                return ResourceManager.GetString("ValidationPropertyNotFound", resourceCulture);
+                return ResourceManager.GetString("ValidationTransactionStatusIsInvalid", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The initial number of bedrooms cannot be greater than the maximum number of bedrooms..
+        ///   Looks up a localized string similar to The transaction &apos;status&apos; field is required..
         /// </summary>
-        internal static string ValidationPropertyNumberOfBedroomsIsInvalid {
+        internal static string ValidationTransactionStatusIsNullOrEmpty {
             get {
-                return ResourceManager.GetString("ValidationPropertyNumberOfBedroomsIsInvalid", resourceCulture);
+                return ResourceManager.GetString("ValidationTransactionStatusIsNullOrEmpty", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The initial number of garages cannot be greater than the maximum number of garages..
+        ///   Looks up a localized string similar to The transaction &apos;type&apos; field is invalid..
         /// </summary>
-        internal static string ValidationPropertyNumberOfGaragesIsInvalid {
+        internal static string ValidationTransactionTypeIsInvalid {
             get {
-                return ResourceManager.GetString("ValidationPropertyNumberOfGaragesIsInvalid", resourceCulture);
+                return ResourceManager.GetString("ValidationTransactionTypeIsInvalid", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The initial number of toilets cannot be greater than the maximum number of toilets..
+        ///   Looks up a localized string similar to The transaction &apos;type&apos; field is required..
         /// </summary>
-        internal static string ValidationPropertyNumberOfToiletsIsInvalid {
+        internal static string ValidationTransactionTypeIsNullOrEmpty {
             get {
-                return ResourceManager.GetString("ValidationPropertyNumberOfToiletsIsInvalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The initial price per m2 cannot be greater than the maximum price per m2..
-        /// </summary>
-        internal static string ValidationPropertyPriceByM2IsInvalid {
-            get {
-                return ResourceManager.GetString("ValidationPropertyPriceByM2IsInvalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The property &apos;ranking&apos; field is invalid..
-        /// </summary>
-        internal static string ValidationPropertyRankingIsInvalid {
-            get {
-                return ResourceManager.GetString("ValidationPropertyRankingIsInvalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The initial rental price cannot be greater than the maximum rental price..
-        /// </summary>
-        internal static string ValidationPropertyRentalPriceIsInvalid {
-            get {
-                return ResourceManager.GetString("ValidationPropertyRentalPriceIsInvalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The initial rental total price cannot be greater than the maximum rental total price..
-        /// </summary>
-        internal static string ValidationPropertyRentalTotalPriceIsInvalid {
-            get {
-                return ResourceManager.GetString("ValidationPropertyRentalTotalPriceIsInvalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The initial selling price cannot be greater than the maximum selling price..
-        /// </summary>
-        internal static string ValidationPropertySellingPriceIsInvalid {
-            get {
-                return ResourceManager.GetString("ValidationPropertySellingPriceIsInvalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The property &apos;status&apos; field is invalid..
-        /// </summary>
-        internal static string ValidationPropertyStatusIsInvalid {
-            get {
-                return ResourceManager.GetString("ValidationPropertyStatusIsInvalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The final &apos;created at&apos; field is invalid..
-        /// </summary>
-        internal static string ValidationPropertyToCreatedAtIsInvalid {
-            get {
-                return ResourceManager.GetString("ValidationPropertyToCreatedAtIsInvalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The final &apos;updated at&apos; field is invalid..
-        /// </summary>
-        internal static string ValidationPropertyToUpdatedAtIsInvalid {
-            get {
-                return ResourceManager.GetString("ValidationPropertyToUpdatedAtIsInvalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The property &apos;transaction&apos; field is invalid..
-        /// </summary>
-        internal static string ValidationPropertyTransactionIsInvalid {
-            get {
-                return ResourceManager.GetString("ValidationPropertyTransactionIsInvalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The advertise &apos;transaction&apos; field is required..
-        /// </summary>
-        internal static string ValidationPropertyTransactionIsNullOrEmpty {
-            get {
-                return ResourceManager.GetString("ValidationPropertyTransactionIsNullOrEmpty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The property &apos;types&apos; field is required..
-        /// </summary>
-        internal static string ValidationPropertyTypesAreInvalid {
-            get {
-                return ResourceManager.GetString("ValidationPropertyTypesAreInvalid", resourceCulture);
+                return ResourceManager.GetString("ValidationTransactionTypeIsNullOrEmpty", resourceCulture);
             }
         }
     }

@@ -11,25 +11,21 @@ namespace IntegrationTest.EntryPoint.WebApi.Commons;
 [Collection("WebApi Collection [NoContext]")]
 public sealed class MessageResourceMappingTest(ITestOutputHelper outputHelper, CoreMessageKeysFixture coreMessageKeysFixture) : IClassFixture<CoreMessageKeysFixture>
 {
-    private const string CurrentProjectName = "IntegrationTest.EntryPoint.WebApi";
-    private const string MessageResourcePath = "EntryPoint.WebApi/Resources/";
-
+    private static readonly string WebApiProjectFolder = GetProjectsByCsprojFile.Projects["EntryPoint.WebApi"];
+    
     private const string DefaultMessageResourcePath = "Messages.resx";
     private const string EnUsMessageResourcePath = "Messages.en-US.resx";
     private const string PtBrMessageResourcePath = "Messages.pt-BR.resx";
 
     [Trait("Category", "WebApi Collection [NoContext]")]
-    [Theory(DisplayName = "Successful to validate messages mapped in message resources ", Skip = "This test is not ready to run")]
+    [Theory(DisplayName = "Successful to validate messages mapped in message resources ")]
     [InlineData(DefaultMessageResourcePath)]
     [InlineData(EnUsMessageResourcePath)]
     [InlineData(PtBrMessageResourcePath)]
     public void SuccessfulToValidateMessagesMappedInMessageResources(string messageResource)
     {
         // Arrange
-        string projectRootFolder = Directory.GetCurrentDirectory().SubstringBefore(CurrentProjectName);
-        outputHelper.WriteLine("The current directory is {0}", projectRootFolder);
-
-        string messageResourcePath = $"{projectRootFolder}{MessageResourcePath}{messageResource}";
+        string messageResourcePath = $"{WebApiProjectFolder}/Resources/{messageResource}";
         List<string> messageResourcesKeys = GetMessageResourcesKeysByFilePath(messageResourcePath);
 
         // Act 
