@@ -25,6 +25,7 @@
         <ProjectReference Include="..\Core\Core.csproj">
             <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
         </ProjectReference>
+        <ProjectReference Include="..\Infra.PostgreSQL\Infra.PostgreSQL.csproj" />
     </ItemGroup>
 
     <ItemGroup>
