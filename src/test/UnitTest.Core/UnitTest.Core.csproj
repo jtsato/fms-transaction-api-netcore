@@ -40,9 +40,5 @@
     <ItemGroup>
         <None Remove="StrykerOutput\**"/>
     </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Domains\Transactions\Query\" />
-      <Folder Include="Domains\Transactions\UseCases\" />
-    </ItemGroup>
 
 </Project>
