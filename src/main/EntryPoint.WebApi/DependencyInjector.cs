@@ -13,7 +13,7 @@ namespace EntryPoint.WebApi;
 public static class DependencyInjector
 {
     private static readonly string ConnectionString =
-        Environment.GetEnvironmentVariable("MONGODB_URL") ?? string.Empty;
+        Environment.GetEnvironmentVariable("DB_CONNECTION_STRING") ?? string.Empty;
 
     private static readonly string DatabaseName =
         Environment.GetEnvironmentVariable("MONGODB_DATABASE") ?? string.Empty;

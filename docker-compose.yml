@@ -22,6 +22,8 @@ services:
       TZ: America/Sao_Paulo
       ASPNETCORE_ENVIRONMENT: "Development"
       ASPNETCORE_URLS: "http://+:80"
-      POSTGRES_CONNECTION_STRING: "Host=local.webapi.postgresql;Port=5432;Database=transactions;User Id=root;Password=root;"
+      DB_CONNECTION_STRING: "Host=local.webapi.postgresql;Port=5432;Database=transactions;User Id=root;Password=root;"
+      TRANSACTION_TABLE_NAME: "transactions"
+      TRANSACTION_SEQUENCE_TABLE_NAME: "transactions_sequences
     depends_on:
       - local.webapi.postgresql

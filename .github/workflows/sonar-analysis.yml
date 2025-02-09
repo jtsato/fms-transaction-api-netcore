@@ -37,7 +37,7 @@ jobs:
         run: |
           docker-compose version
 
-      - name: Start MongoDB Container
+      - name: Start PostgreSQL Container
         run: docker-compose -f src/test/IntegrationTest.Infra.PostgreSql/docker-compose.yml up -d
 
       - name: Resolve dependencies

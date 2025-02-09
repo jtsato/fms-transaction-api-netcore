@@ -17,8 +17,7 @@
       "applicationUrl": "http://localhost:5132",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "MONGODB_URL": "mongodb+srv://mongodb+srv://container:container@localhost:27019/balances-mongodb/transactions-mongodb?retryWrites=true&w=majority",
-        "MONGODB_DATABASE": "transactions-mongodb",
+        "DB_CONNECTION_STRING": "Server=127.0.0.1;Port=6438;Database=development;User Id=postgres;Password=postgres;",
         "TRANSACTION_TABLE_NAME":"transactions",
         "TRANSACTION_SEQUENCE_COLLECTION_NAME": "transactions_sequences"
       }
@@ -31,8 +30,7 @@
       "applicationUrl": "https://localhost:7214;http://localhost:5132",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "MONGODB_URL": "mongodb+srv://mongodb+srv://container:container@localhost:27019/balances-mongodb/transactions-mongodb?retryWrites=true&w=majority",
-        "MONGODB_DATABASE": "transactions-mongodb",
+        "DB_CONNECTION_STRING": "Server=127.0.0.1;Port=6438;Database=development;User Id=postgres;Password=postgres;",
         "TRANSACTION_TABLE_NAME":"transactions",
         "TRANSACTION_SEQUENCE_COLLECTION_NAME": "transactions_sequences"
       }
@@ -43,8 +41,7 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "MONGODB_URL": "mongodb+srv://mongodb+srv://container:container@localhost:27019/balances-mongodb/transactions-mongodb?retryWrites=true&w=majority",
-        "MONGODB_DATABASE": "transactions-mongodb",
+        "DB_CONNECTION_STRING": "Server=127.0.0.1;Port=6438;Database=development;User Id=postgres;Password=postgres;",
         "TRANSACTION_TABLE_NAME":"transactions",
         "TRANSACTION_SEQUENCE_COLLECTION_NAME": "transactions_sequences"
       }

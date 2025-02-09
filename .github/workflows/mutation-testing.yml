@@ -5,7 +5,7 @@ on:
     branches:
       - "main"
     paths:
-      - ".github/workflows/03-transaction-mutation-testing.yml"
+      - ".github/workflows/transaction-mutation-testing.yml"
   schedule:
     - cron: "30 3 * * 1-5"
   workflow_dispatch:
@@ -51,7 +51,7 @@ jobs:
         run: |
           docker-compose version
 
-      - name: Start MongoDB Container
+      - name: Start PostgreSQL Container
         run: docker-compose -f src/test/IntegrationTest.Infra.PostgreSql/docker-compose.yml up -d
 
       - name: Resolve dependencies
@@ -91,14 +91,14 @@ jobs:
           mkdir -p ./docs/mutation-reports/EntryPoint.WebApi
           find ./src/test/IntegrationTest.EntryPoint.WebApi/StrykerOutput -name '*.html' -exec cp -prv '{}' './docs/mutation-reports/EntryPoint.WebApi' ';'
 
-      - name: Mutation [Infra MongoDB]
+      - name: Mutation [Infra PostgreSQL]
         working-directory: ./src/test/IntegrationTest.Infra.PostgreSql
         run: |
           dotnet new tool-manifest
           dotnet tool install dotnet-stryker --version 4.5.1
           dotnet stryker
 
-      - name: Copy report to right place [Infra MongoDB]
+      - name: Copy report to right place [Infra PostgreSQL]
         run: |
           mkdir -p ./docs/mutation-reports/Infra.PostgreSql
           find ./src/test/IntegrationTest.Infra.PostgreSql/StrykerOutput -name '*.html' -exec cp -prv '{}' './docs/mutation-reports/Infra.PostgreSql' ';'
