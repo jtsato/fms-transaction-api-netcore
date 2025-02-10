@@ -1,6 +1,6 @@
 ﻿using System.Data.Common;
 
-namespace Infra.PostgreSQL.Commons.Connection;
+namespace Infra.PostgreSql.Commons.Connection;
 
 public interface IConnectionFactory
 {

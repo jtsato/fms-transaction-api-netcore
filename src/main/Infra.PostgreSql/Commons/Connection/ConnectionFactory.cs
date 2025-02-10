@@ -1,19 +1,13 @@
 ﻿using System.Data.Common;
 using Npgsql;
 
-namespace Infra.PostgreSQL.Commons.Connection;
+namespace Infra.PostgreSql.Commons.Connection;
 
-public sealed class ConnectionFactory : IConnectionFactory
+public sealed class ConnectionFactory(string connectionString) : IConnectionFactory
 {
-    private readonly string _connectionString;
-
-    public ConnectionFactory(string connectionString)
-    {
-        _connectionString = connectionString;
-    }
 
     public DbConnection GetConnection()
     {
-        return new NpgsqlConnection(_connectionString);
+        return new NpgsqlConnection(connectionString);
     }
 }

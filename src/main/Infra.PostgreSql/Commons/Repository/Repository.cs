@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using Core.Commons;
 using Core.Commons.Paging;
 using Dapper;
-using Infra.PostgreSQL.Commons.Context;
-using Infra.PostgreSQL.Commons.Filter;
+using Infra.PostgreSql.Commons.Context;
+using Infra.PostgreSql.Commons.Filter;
 
-namespace Infra.PostgreSQL.Commons.Repository;
+namespace Infra.PostgreSql.Commons.Repository;
 
 public abstract class Repository<T> : IRepository<T> where T : Entity
 {

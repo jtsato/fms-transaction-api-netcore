@@ -1,4 +1,4 @@
-﻿namespace Infra.PostgreSQL.Commons.Repository;
+﻿namespace Infra.PostgreSql.Commons.Repository;
 
 public interface IEntity
 {

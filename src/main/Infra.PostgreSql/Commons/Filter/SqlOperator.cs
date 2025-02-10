@@ -1,6 +1,6 @@
 ﻿using Core.Commons;
 
-namespace Infra.PostgreSQL.Commons.Filter;
+namespace Infra.PostgreSql.Commons.Filter;
 
 public sealed class SqlOperator : Enumeration<SqlOperator>
 {

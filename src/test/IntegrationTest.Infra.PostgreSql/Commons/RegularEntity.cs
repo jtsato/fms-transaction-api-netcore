@@ -5,7 +5,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
-using Infra.PostgreSQL.Commons.Repository;
+using Infra.PostgreSql.Commons.Repository;
 
 namespace IntegrationTest.Infra.PostgreSql.Commons;
 

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Reflection;
 
-namespace Infra.PostgreSQL.Commons.Filter;
+namespace Infra.PostgreSql.Commons.Filter;
 
 public static class DapperSqlHelper
 {

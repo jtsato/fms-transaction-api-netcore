@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
-namespace Infra.PostgreSQL.Commons.Filter;
+namespace Infra.PostgreSql.Commons.Filter;
 
 public sealed class FilterDefinition
 {

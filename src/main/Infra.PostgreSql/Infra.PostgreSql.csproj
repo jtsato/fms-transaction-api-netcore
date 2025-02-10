@@ -5,7 +5,6 @@
         <PackageId>InfraPostgreSQL</PackageId>
         <Nullable>disable</Nullable>
         <ImplicitUsings>false</ImplicitUsings>
-        <RootNamespace>Infra.PostgreSQL</RootNamespace>
         <EnableProfileGuidedOptimization>true</EnableProfileGuidedOptimization>
     </PropertyGroup>
 
@@ -18,13 +17,6 @@
         <PackageReference Include="Dapper.SqlBuilder" Version="2.0.78" />
         <PackageReference Include="Npgsql" Version="8.0.4" />
         <PackageReference Include="Npgsql.DependencyInjection" Version="8.0.4" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Domains\Mappers\" />
-      <Folder Include="Domains\Models\" />
-      <Folder Include="Domains\Providers\" />
-      <Folder Include="Domains\Repositories\" />
     </ItemGroup>
 
 </Project>

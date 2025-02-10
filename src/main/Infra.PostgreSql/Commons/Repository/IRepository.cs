@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using Core.Commons;
 using Core.Commons.Paging;
-using Infra.PostgreSQL.Commons.Filter;
+using Infra.PostgreSql.Commons.Filter;
 
-namespace Infra.PostgreSQL.Commons.Repository;
+namespace Infra.PostgreSql.Commons.Repository;
 
 public interface IRepository<T> where T : Entity
 {

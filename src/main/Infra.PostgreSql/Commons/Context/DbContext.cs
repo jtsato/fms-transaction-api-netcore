@@ -3,7 +3,7 @@ using System.Data.Common;
 using System.Diagnostics.CodeAnalysis;
 using Dapper;
 
-namespace Infra.PostgreSQL.Commons.Context;
+namespace Infra.PostgreSql.Commons.Context;
 
 // ReSharper disable ClassNeverInstantiated.Global
 public sealed class DbContext : IDisposable

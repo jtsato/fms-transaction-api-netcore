@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Data;
 using System.Threading.Tasks;
+using Infra.PostgreSql.Commons.Repository;
+using Infra.PostgreSql.Domains.Models;
 
-namespace Infra.PostgreSQL.Commons.Context;
+namespace Infra.PostgreSql.Commons.Context;
 
 public interface IUnitOfWork : IDisposable
 {
@@ -16,6 +18,5 @@ public interface IUnitOfWork : IDisposable
     Task InvokeAsync(Func<Task> method);
     Task<T> InvokeAsync<T>(Func<Task<T>> method);
     
-    // IRepository<ConfigurationEntity> Configurations { get; }
-    // IRepository<ChangeRequestEntity> ChangeRequests { get; }
+    IRepository<TransactionEntity> Transactions { get; }
 }

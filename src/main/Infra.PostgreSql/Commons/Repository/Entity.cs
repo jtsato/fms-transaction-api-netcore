@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Infra.PostgreSQL.Commons.Repository;
+namespace Infra.PostgreSql.Commons.Repository;
 
 public abstract class Entity : IEntity
 {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Infra.PostgreSQL.Commons.Filter;
+using Infra.PostgreSql.Commons.Filter;
 using Xunit;
 
 namespace IntegrationTest.Infra.PostgreSql.Commons;

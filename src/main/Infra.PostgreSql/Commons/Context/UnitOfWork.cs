@@ -2,8 +2,11 @@
 using System.Data;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
+using Infra.PostgreSql.Commons.Repository;
+using Infra.PostgreSql.Domains.Models;
+using Infra.PostgreSql.Domains.Repositories;
 
-namespace Infra.PostgreSQL.Commons.Context
+namespace Infra.PostgreSql.Commons.Context
 {
     public sealed class UnitOfWork : IUnitOfWork
     {
@@ -14,8 +17,7 @@ namespace Infra.PostgreSQL.Commons.Context
         private IDbConnection _connection;
         private IDbTransaction _transaction;
 
-        // public IRepository<ConfigurationEntity> Configurations { get; }
-        // public IRepository<ChangeRequestEntity> ChangeRequests { get; }
+        public IRepository<TransactionEntity> Transactions { get; }
 
         private bool _disposed;
 
@@ -28,8 +30,7 @@ namespace Infra.PostgreSQL.Commons.Context
         {
             _id = Guid.NewGuid();
             DbContext = dbContext;
-            // Configurations = new ConfigurationRepository(this);
-            // ChangeRequests = new ChangeRequestRepository(this);
+            Transactions = new TransactionRepository(this);
         }
 
         [ExcludeFromCodeCoverage]

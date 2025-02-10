@@ -1,4 +1,4 @@
-﻿namespace Infra.PostgreSQL.Commons.Filter;
+﻿namespace Infra.PostgreSql.Commons.Filter;
 
 public sealed class SqlTemplate
 {

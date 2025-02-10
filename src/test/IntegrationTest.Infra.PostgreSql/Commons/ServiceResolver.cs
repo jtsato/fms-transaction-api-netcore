@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Diagnostics.CodeAnalysis;
 using Core.Commons;
-using Infra.PostgreSQL.Commons.Context;
+using Infra.PostgreSql.Commons.Context;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
 
