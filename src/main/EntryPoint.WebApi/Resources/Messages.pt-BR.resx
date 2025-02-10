@@ -39,10 +39,7 @@
     <data name="ValidationTransactionAmountIsNullOrEmpty" xml:space="preserve">
         <value>O conteúdo do campo 'valor' da transação é obrigatório.</value>
     </data>
-    <data name="ValidationTransactionStatusIsInvalid" xml:space="preserve">
-        <value>O conteúdo do campo de 'status' da transação é inválido.</value>
-    </data>
-    <data name="ValidationTransactionAmountIsNotDouble" xml:space="preserve">
+    <data name="ValidationTransactionAmountIsNotDecimal" xml:space="preserve">
         <value>O conteúdo do campo 'valor' da transação é inválido.</value>
     </data>
     <data name="ValidationTransactionDateIsInvalid" xml:space="preserve">
@@ -53,9 +50,6 @@
     </data>
     <data name="ValidationTransactionDescriptionIsNullOrEmpty" xml:space="preserve">
         <value>O conteúdo do campo 'descrição' da transação é obrigatório.</value>
-    </data>
-    <data name="ValidationTransactionStatusIsNullOrEmpty" xml:space="preserve">
-        <value>O conteúdo do campo 'status' da transação é obrigatório.</value>
     </data>
     <data name="ValidationTransactionTypeIsInvalid" xml:space="preserve">
         <value>O conteúdo do campo 'tipo' da transação é inválido.</value>

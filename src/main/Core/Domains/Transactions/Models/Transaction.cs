@@ -11,9 +11,9 @@ public sealed class Transaction
     public decimal Amount { get; init; }
     public Type Type { get; init; }
     public Status Status { get; init; }
-    public DateTimeOffset Date { get; init; }
-    public DateTimeOffset CreatedAt { get; init; }
-    public DateTimeOffset UpdatedAt { get; init; }
+    public DateTime Date { get; init; }
+    public DateTime CreatedAt { get; init; }
+    public DateTime UpdatedAt { get; init; }
 
     [ExcludeFromCodeCoverage]
     private bool Equals(Transaction other)

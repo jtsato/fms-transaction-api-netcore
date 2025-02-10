@@ -92,6 +92,21 @@ public sealed class ArgumentCheckerTest
     {
         Assert.Equal(expected, ArgumentChecker.IsDouble(input));
     }
+    
+    [Trait("Category", "Core Business tests")]
+    [Theory(DisplayName = "Successful to validate an string parameter as decimal")]
+    [InlineData("123", true)]
+    [InlineData("123.45", true)]
+    [InlineData("abc", false)]
+    [InlineData("abc123", false)]
+    [InlineData(",.%$#@", false)]
+    [InlineData("", true)]
+    [InlineData(null, true)]
+    [InlineData("NaN", false)]
+    public void SuccessfulToValidateAnStringParameterAsDecimal(string input, bool expected)
+    {
+        Assert.Equal(expected, ArgumentChecker.IsDecimal(input));
+    }
 
     [Trait("Category", "Core Business tests")]
     [Theory(DisplayName = "Successful to validate an string parameter as a valid url")]

@@ -17,8 +17,8 @@ internal sealed class RegisterTransactionCommandValidator : AbstractValidator<Re
             .Cascade(CascadeMode.Stop)
             .NotEmpty()
             .WithMessage("ValidationTransactionAmountIsNullOrEmpty")
-            .Must(ArgumentChecker.IsDouble)
-            .WithMessage("ValidationTransactionAmountIsNotDouble");
+            .Must(ArgumentChecker.IsDecimal)
+            .WithMessage("ValidationTransactionAmountIsNotDecimal");
         
         RuleFor(command => command.Type)
             .Cascade(CascadeMode.Stop)
@@ -26,13 +26,6 @@ internal sealed class RegisterTransactionCommandValidator : AbstractValidator<Re
             .WithMessage("ValidationTransactionTypeIsNullOrEmpty")
             .Must(ArgumentChecker.IsValidEnumOf<Type>)
             .WithMessage("ValidationTransactionTypeIsInvalid");
-        
-        RuleFor(command => command.Status)
-            .Cascade(CascadeMode.Stop)
-            .NotEmpty()
-            .WithMessage("ValidationTransactionStatusIsNullOrEmpty")
-            .Must(ArgumentChecker.IsValidEnumOf<Status>)
-            .WithMessage("ValidationTransactionStatusIsInvalid");
         
         RuleFor(command => command.Date)
             .Cascade(CascadeMode.Stop)

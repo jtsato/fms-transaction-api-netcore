@@ -11,7 +11,7 @@ public sealed class TransactionAudit
     public string OldDescription { get; init; }
     public decimal OldAmount { get; init; }
     public Type OldType { get; init; }
-    public DateTimeOffset ChangeDate { get; init; }
+    public DateTime ChangeDate { get; init; }
 
     [ExcludeFromCodeCoverage]
     public override string ToString()

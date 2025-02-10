@@ -19,7 +19,6 @@ public class RegisterTransactionCommandTest
             new RegisterTransactionCommand(
                 string.Empty,
                 string.Empty,
-                string.Empty,
                 null,
                 null
         ));
@@ -30,10 +29,11 @@ public class RegisterTransactionCommandTest
             .ToList();
         
         Assert.NotEmpty(errorMessages);
+        Assert.Equal(4, errorMessages.Count);
+        
         Assert.Contains("ValidationTransactionDescriptionIsNullOrEmpty", errorMessages);
         Assert.Contains("ValidationTransactionAmountIsNullOrEmpty", errorMessages);
         Assert.Contains("ValidationTransactionTypeIsNullOrEmpty", errorMessages);
-        Assert.Contains("ValidationTransactionStatusIsNullOrEmpty", errorMessages);
         Assert.Contains("ValidationTransactionDateIsNullOrEmpty", errorMessages);
     }
     
@@ -49,7 +49,6 @@ public class RegisterTransactionCommandTest
                 "Description",
                 "Amount",
                 "Type",
-                "Status",
                 "Date"
         ));
         
@@ -59,9 +58,10 @@ public class RegisterTransactionCommandTest
             .ToList();
         
         Assert.NotEmpty(errorMessages);
-        Assert.Contains("ValidationTransactionAmountIsNotDouble", errorMessages);
+        Assert.Equal(3, errorMessages.Count);
+        
+        Assert.Contains("ValidationTransactionAmountIsNotDecimal", errorMessages);
         Assert.Contains("ValidationTransactionTypeIsInvalid", errorMessages);
-        Assert.Contains("ValidationTransactionStatusIsInvalid", errorMessages);
         Assert.Contains("ValidationTransactionDateIsInvalid", errorMessages);
     }
 }

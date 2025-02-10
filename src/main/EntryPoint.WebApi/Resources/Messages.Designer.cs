@@ -125,9 +125,9 @@ namespace EntryPoint.WebApi.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The content of the &apos;amount&apos; field in the transaction is invalid..
         /// </summary>
-        internal static string ValidationTransactionAmountIsNotDouble {
+        internal static string ValidationTransactionAmountIsNotDecimal {
             get {
-                return ResourceManager.GetString("ValidationTransactionAmountIsNotDouble", resourceCulture);
+                return ResourceManager.GetString("ValidationTransactionAmountIsNotDecimal", resourceCulture);
             }
         }
         
@@ -164,24 +164,6 @@ namespace EntryPoint.WebApi.Resources {
         internal static string ValidationTransactionDescriptionIsNullOrEmpty {
             get {
                 return ResourceManager.GetString("ValidationTransactionDescriptionIsNullOrEmpty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The transaction &apos;status&apos; field is invalid..
-        /// </summary>
-        internal static string ValidationTransactionStatusIsInvalid {
-            get {
-                return ResourceManager.GetString("ValidationTransactionStatusIsInvalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The transaction &apos;status&apos; field is required..
-        /// </summary>
-        internal static string ValidationTransactionStatusIsNullOrEmpty {
-            get {
-                return ResourceManager.GetString("ValidationTransactionStatusIsNullOrEmpty", resourceCulture);
             }
         }
         

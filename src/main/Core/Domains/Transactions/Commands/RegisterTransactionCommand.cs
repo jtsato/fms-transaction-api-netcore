@@ -9,18 +9,16 @@ public sealed class RegisterTransactionCommand
 {
     private static readonly RegisterTransactionCommandValidator CommandValidator = new RegisterTransactionCommandValidator();
     
-    public string Description { get; set; }
-    public string Amount { get; set; }
-    public string Type { get; set; }
-    public string Status { get; set; }
-    public string Date { get; set; }
+    public string Description { get; }
+    public string Amount { get; }
+    public string Type { get; }
+    public string Date { get; }
     
-    public RegisterTransactionCommand(string description, string amount, string type, string status, string date)
+    public RegisterTransactionCommand(string description, string amount, string type, string date)
     {
         Description = description;
         Amount = amount;
         Type = type;
-        Status = status;
         Date = date;
         CommandValidator.ValidateAndThrow(this);
     }
@@ -30,7 +28,6 @@ public sealed class RegisterTransactionCommand
         return Description == other.Description 
                && Amount == other.Amount 
                && Type == other.Type 
-               && Status == other.Status 
                && Date == other.Date;
     }
     
@@ -41,11 +38,11 @@ public sealed class RegisterTransactionCommand
     
     public override int GetHashCode()
     {
-        return HashCode.Combine(Description, Amount, Type, Status, Date);
+        return HashCode.Combine(Description, Amount, Type, Date);
     }
 
     public override string ToString()
     {
-        return $"{nameof(Description)}: {Description}, {nameof(Amount)}: {Amount}, {nameof(Type)}: {Type}, {nameof(Status)}: {Status}, {nameof(Date)}: {Date}";
+        return $"{nameof(Description)}: {Description}, {nameof(Amount)}: {Amount}, {nameof(Type)}: {Type}, {nameof(Date)}: {Date}";
     }
 }

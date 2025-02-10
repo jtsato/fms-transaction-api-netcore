@@ -38,6 +38,11 @@ public static class ArgumentChecker
     {
         return string.IsNullOrEmpty(input) || double.TryParse(input, out _);
     }
+    
+    public static bool IsDecimal(string input)
+    {
+        return string.IsNullOrEmpty(input) || decimal.TryParse(input, out _);
+    }
 
     public static bool IsValidUri(string link)
     {

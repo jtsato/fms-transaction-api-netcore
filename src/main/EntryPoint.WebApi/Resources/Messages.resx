@@ -45,10 +45,7 @@
     <data name="ValidationTransactionAmountIsNullOrEmpty" xml:space="preserve">
         <value>The transaction 'amount' field is required.</value>
     </data>
-    <data name="ValidationTransactionStatusIsInvalid" xml:space="preserve">
-        <value>The transaction 'status' field is invalid.</value>
-    </data>
-    <data name="ValidationTransactionAmountIsNotDouble" xml:space="preserve">
+    <data name="ValidationTransactionAmountIsNotDecimal" xml:space="preserve">
         <value>The content of the 'amount' field in the transaction is invalid.</value>
     </data>
     <data name="ValidationTransactionDateIsInvalid" xml:space="preserve">
@@ -60,10 +57,7 @@
     <data name="ValidationTransactionDescriptionIsNullOrEmpty" xml:space="preserve">
         <value>The transaction 'description' field is required.</value>
     </data>
-    <data name="ValidationTransactionStatusIsNullOrEmpty" xml:space="preserve">
-      <value>The transaction 'status' field is required.</value>
-    </data>
-        <data name="ValidationTransactionTypeIsInvalid" xml:space="preserve">
+    <data name="ValidationTransactionTypeIsInvalid" xml:space="preserve">
       <value>The transaction 'type' field is invalid.</value>
     </data>
         <data name="ValidationTransactionTypeIsNullOrEmpty" xml:space="preserve">
