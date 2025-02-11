@@ -1,17 +1,35 @@
 ﻿version: "3.7"
 services:
   local.webapi.postgresql:
-    image: postgres:latest
+    image: postgres:11.22-bullseye
     restart: always
     ports:
-      - "5432:5432"
+      - "5438:5432"
     environment:
-      POSTGRES_DB: "transactions"
-      POSTGRES_USER: "root"
-      POSTGRES_PASSWORD: "root"
+      - POSTGRES_DB=development
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
-  
+    command: [ "postgres", "-c", "log_statement=all" ]
+
+  local.webapi.pgbouncer:
+    image: edoburu/pgbouncer:latest
+    environment:
+      - DB_HOST=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - POOL_MODE=session
+    ports:
+      - '6438:5432'
+    depends_on:
+      - local.webapi.postgresql
+
   local.webapi:
     build:
       context: .
@@ -22,8 +40,8 @@ services:
       TZ: America/Sao_Paulo
       ASPNETCORE_ENVIRONMENT: "Development"
       ASPNETCORE_URLS: "http://+:80"
-      DB_CONNECTION_STRING: "Host=local.webapi.postgresql;Port=5432;Database=transactions;User Id=root;Password=root;"
+      DB_CONNECTION_STRING: "Host=local.webapi.pgbouncer;Port=6438;Database=development;User Id=postgres;Password=postgres;"
       TRANSACTION_TABLE_NAME: "transactions"
-      TRANSACTION_SEQUENCE_TABLE_NAME: "transactions_sequences
+      TRANSACTION_SEQUENCE_TABLE_NAME: "transactions_sequences"
     depends_on:
-      - local.webapi.postgresql
+      - local.webapi.pgbouncer

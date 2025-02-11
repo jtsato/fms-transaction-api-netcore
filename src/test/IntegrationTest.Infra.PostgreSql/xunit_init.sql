@@ -19,15 +19,14 @@ CREATE SEQUENCE transactions_audit_sequences
 -- Equivale à classe Transaction (Transação Financeira).
 
 CREATE TABLE transactions (
-    id BIGINT NOT NULL 
-        DEFAULT nextval('transactions_sequences'),          -- Identificador único
-    description VARCHAR(255) NOT NULL,                -- Descrição
-    amount DECIMAL(12,2) NOT NULL,                    -- Valor, deve ser positivo
-    type VARCHAR(10) NOT NULL,                        -- 'DEBIT' ou 'CREDIT'
-    "date" TIMESTAMP WITH TIME ZONE NOT NULL,         -- Data/hora da transação
-    status VARCHAR(10) NOT NULL,                      -- 'ACTIVE' ou 'DELETED'
-    createdAt TIMESTAMP WITH TIME ZONE NOT NULL,      -- Data/hora de criação
-    updatedAt TIMESTAMP WITH TIME ZONE NOT NULL,      -- Data/hora da última atualização
+    id BIGINT NOT NULL DEFAULT nextval('transactions_sequences'),  -- Identificador único
+    description VARCHAR(255) NOT NULL,                             -- Descrição
+    amount DECIMAL(12,2) NOT NULL,                                 -- Valor, deve ser positivo
+    type VARCHAR(10) NOT NULL,                                     -- 'DEBIT' ou 'CREDIT'
+    "date" TIMESTAMP WITH TIME ZONE NOT NULL,                      -- Data/hora da transação
+    status VARCHAR(10) NOT NULL,                                   -- 'ACTIVE' ou 'DELETED'
+    created_at TIMESTAMP WITH TIME ZONE NOT NULL,                  -- Data/hora de criação
+    updated_at TIMESTAMP WITH TIME ZONE NOT NULL,                  -- Data/hora da última atualização
     
     -- Constraint de PK
     CONSTRAINT pk_transactions PRIMARY KEY (id),

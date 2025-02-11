@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Diagnostics.CodeAnalysis;
 using Core.Commons;
+using Core.Domains.Transactions.Gateways;
 using Infra.PostgreSql.Commons.Context;
+using Infra.PostgreSql.Domains.Providers;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
 
@@ -36,19 +38,15 @@ public sealed class ServiceResolver : IServiceResolver
     private void AddServices()
     {
         _services.Add(typeof(IUnitOfWork), GetUnitOfWork());
+        _services.Add(typeof(IRegisterTransactionGateway), GetRegisterTransactionGateway());
     }
 
     private IUnitOfWork GetUnitOfWork()
     {
-        if (_unitOfWork != null)
-        {
-            return _unitOfWork;
-        }
-        else
-        {
-            _unitOfWork = new UnitOfWork(GetDbContext());
-            return _unitOfWork;
-        }
+        if (_unitOfWork != null) return _unitOfWork;
+        _unitOfWork = new UnitOfWork(GetDbContext());
+        
+        return _unitOfWork;
     }
 
     private DbContext GetDbContext()
@@ -60,5 +58,10 @@ public sealed class ServiceResolver : IServiceResolver
     {
         NpgsqlDataSourceBuilder dataSourceBuilder = new NpgsqlDataSourceBuilder(_connectionString);
         return dataSourceBuilder.Build();
+    }
+
+    private IRegisterTransactionGateway GetRegisterTransactionGateway()
+    {
+        return new RegisterTransactionProvider(GetUnitOfWork());
     }
 }

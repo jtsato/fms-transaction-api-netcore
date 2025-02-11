@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace IntegrationTest.Infra.PostgreSql.Commons;
 
+// ReSharper disable once ClassNeverInstantiated.Global
 [ExcludeFromCodeCoverage]
 public sealed class Context : IDisposable
 {

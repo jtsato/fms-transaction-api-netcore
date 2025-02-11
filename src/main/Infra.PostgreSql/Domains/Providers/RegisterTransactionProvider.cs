@@ -18,9 +18,9 @@ public sealed class RegisterTransactionProvider(IUnitOfWork unitOfWork) : IRegis
             {
                 TransactionEntity newTransactionEntity = TransactionMapper.ToEntity(transaction);
 
-                TransactionEntity TransactionEntity = await _unitOfWork.Transactions.AddAsync(newTransactionEntity);
+                TransactionEntity transactionEntity = await _unitOfWork.Transactions.AddAsync(newTransactionEntity);
 
-                return TransactionMapper.ToModel(TransactionEntity);
+                return TransactionMapper.ToModel(transactionEntity);
             }
         );
     }

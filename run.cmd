@@ -15,10 +15,10 @@ IF /I NOT "%~1"=="test" (
     )
 )
 
-:: Set the PostgreSQL host and port for the integration tests 
+:: Set the PostgreSQL host and port for the integration tests
 
 SET host=127.0.0.1
-SET port=27018
+SET port=6437
 SET timeout=30
 
 ECHO.
@@ -32,15 +32,15 @@ ECHO Waiting for PostgreSQL to start...
 
 TIMEOUT /t 1 /nobreak > nul
 
-CURL --output NUL --silent --fail !host!:!port!
+curl --output NUL --silent --fail !host!:!port!
 IF !ERRORLEVEL! equ 0 (
     ECHO.
     ECHO PostgreSQL is running on port !port!.
     TIMEOUT /t 4 /nobreak > nul
 ) ELSE (
     SET /a timeout-=1
-    IF !timeout! gtr 0 (
-        goto wait_loop
+    IF !timeout! GTR 0 (
+        GOTO wait_loop
     ) ELSE (
         ECHO.
         ECHO Timed out waiting for PostgreSQL to start.
@@ -139,14 +139,14 @@ ECHO.
 ECHO Opening code coverage...
 dotnet tool list -g | FINDSTR /C:"dotnet-reportgenerator-globaltool" > nul
 
-IF %ERRORLEVEL% equ 0 (
+IF %ERRORLEVEL% EQU 0 (
     ECHO dotnet-reportgenerator-globaltool is already installed.
 ) ELSE (
     ECHO Installing dotnet-reportgenerator-globaltool...
     dotnet tool install -g dotnet-reportgenerator-globaltool
-    IF %ERRORLEVEL% equ 0 (
+    IF %ERRORLEVEL% EQU 0 (
         ECHO Installation completed successfully.
-    ) else (
+    ) ELSE (
         ECHO Installation failed.
         EXIT /b 1
     )
@@ -154,7 +154,7 @@ IF %ERRORLEVEL% equ 0 (
 
 reportgenerator "-reports:./**/coverage.cobertura.xml" "-targetdir:coverage\lcov-report" "-reporttypes:Html"
 
-start coverage\lcov-report\index.html
+START coverage\lcov-report\index.html
 
 GOTO end
 

@@ -1,32 +1,46 @@
 version: '3.7'
 services:
   postgres:
-    image: postgres:11.22-bullseye
+    image: postgres:10.5
+    networks:
+      - xunit
     restart: always
     environment:
-      - POSTGRES_DB=development
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=xunit_test
+      - POSTGRES_USER=xunit
+      - POSTGRES_PASSWORD=xunit
     logging:
       options:
         max-size: 10m
         max-file: "3"
     ports:
-      - '5438:5432'
+      - '5437:5432'
     volumes:
       # copy the sql script to initialize the database
-      - ./infra_init.sql:/docker-entrypoint-initdb.d/infra_init.sql
+      - ./xunit_init.sql:/docker-entrypoint-initdb.d/xunit_init.sql
     command: [ "postgres", "-c", "log_statement=all" ]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U xunit"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
+# https://youtu.be/ddKm7a7xOpk?t=798
   pgbouncer:
     image: edoburu/pgbouncer:latest
+    networks:
+      - xunit
     environment:
       - DB_HOST=postgres
-      - DB_USER=postgres
-      - DB_PASSWORD=postgres
+      - DB_USER=xunit
+      - DB_PASSWORD=xunit
       - POOL_MODE=session
       # https://youtu.be/ddKm7a7xOpk?t=798
     ports:
-      - '6438:5432'
+      - '6437:5432'
     depends_on:
       - postgres
+
+networks:
+  xunit:
+    driver: bridge
