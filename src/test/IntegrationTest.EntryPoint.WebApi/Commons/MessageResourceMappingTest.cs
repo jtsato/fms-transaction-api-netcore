@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using Core.Commons.Extensions;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace IntegrationTest.EntryPoint.WebApi.Commons;
 

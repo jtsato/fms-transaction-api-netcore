@@ -1,6 +1,6 @@
 # Transactions API .NET Core
 
-Este projeto implementa os princípios da Clean Architecture utilizando .NET Core 8.0. Trata-se de um serviço responsável por registrar, armazenar e gerenciar lançamentos, garantindo consistência por meio de um banco de dados relacional PostgreSQL. Além disso, expõe APIs REST para facilitar a interação com os lançamentos de forma eficiente e escalável.
+Este projeto implementa os princípios da Clean Architecture utilizando .NET 10. Trata-se de um serviço responsável por registrar, armazenar e gerenciar lançamentos, garantindo consistência por meio de um banco de dados relacional PostgreSQL. Além disso, expõe APIs REST para facilitar a interação com os lançamentos de forma eficiente e escalável.
 
 [![CI](https://github.com/jtsato/fms-transaction-api-netcore/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/jtsato/fms-transaction-netcore/actions/workflows/continuous-integration.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=jtsato_transactions-api-netcore&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=jtsato_transactions-api-netcore)
@@ -70,7 +70,7 @@ Este projeto implementa os princípios da Clean Architecture utilizando .NET Cor
 
 ## Prerequisites
 
-* [.NET 8](https://dotnet.microsoft.com/download)
+* [.NET 10](https://dotnet.microsoft.com/download)
 * [Docker](https://docs.docker.com/get-docker)
 * [Docker compose](https://docs.docker.com/compose/install/)
 
@@ -145,7 +145,7 @@ dotnet stryker
 ```
 * Iniciando a solução:
 ```
-cd EntryPoint.WebApi/bin/Debug/net8.0
+cd EntryPoint.WebApi/bin/Debug/net10.0
 dotnet EntryPoint.WebApi.dll
 ```
 ***

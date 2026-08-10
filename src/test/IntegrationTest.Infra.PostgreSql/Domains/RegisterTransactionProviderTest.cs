@@ -10,8 +10,9 @@ using Type = Core.Domains.Transactions.Models.Type;
 namespace IntegrationTest.Infra.PostgreSql.Domains;
 
 [Collection("Database collection")]
-public sealed class RegisterTransactionProviderTest(Context context, RegisterTransactionProviderTestFixture fixture) : IClassFixture<RegisterTransactionProviderTestFixture>
+public sealed class RegisterTransactionProviderTest(Context context, RegisterTransactionProviderTestFixture _) : IClassFixture<RegisterTransactionProviderTestFixture>
 {
+    private readonly RegisterTransactionProviderTestFixture _fixture = _;
     private readonly IRegisterTransactionGateway _provider = context.ServiceResolver.Resolve<IRegisterTransactionGateway>();
 
     [Trait("Category", "Infrastructure (DB) Integration tests")]

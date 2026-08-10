@@ -7,7 +7,6 @@ using System.Runtime.InteropServices;
 using System.Text;
 using Core.Commons.Extensions;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace UnitTest.Core.Commons;
 

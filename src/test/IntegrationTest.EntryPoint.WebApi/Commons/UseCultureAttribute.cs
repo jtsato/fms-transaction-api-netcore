@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Reflection;
 using System.Threading;
-using Xunit.Sdk;
+using Xunit.v3;
 
 namespace IntegrationTest.EntryPoint.WebApi.Commons;
 
@@ -23,7 +23,17 @@ namespace IntegrationTest.EntryPoint.WebApi.Commons;
             _uiCultureName = uiCulture;
         }
 
-        public override void Before(MethodInfo methodUnderTest)
+        public void Before(MethodInfo methodUnderTest)
+        {
+            Before(methodUnderTest, null);
+        }
+
+        public void After(MethodInfo methodUnderTest)
+        {
+            After(methodUnderTest, null);
+        }
+
+        public override void Before(MethodInfo methodUnderTest, IXunitTest test)
         {
             _originalCulture = Thread.CurrentThread.CurrentCulture;
             _originalUiCulture = Thread.CurrentThread.CurrentUICulture;
@@ -31,7 +41,7 @@ namespace IntegrationTest.EntryPoint.WebApi.Commons;
             SetThreadCultures(_cultureName, _uiCultureName);
         }
 
-        public override void After(MethodInfo methodUnderTest)
+        public override void After(MethodInfo methodUnderTest, IXunitTest test)
         {
             SetThreadCultures(_originalCulture.Name, _originalUiCulture.Name);
         }

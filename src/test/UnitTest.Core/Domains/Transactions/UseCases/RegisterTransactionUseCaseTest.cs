@@ -9,7 +9,6 @@ using Core.Domains.Transactions.UseCases;
 using Moq;
 using UnitTest.Core.Commons;
 using Xunit;
-using Xunit.Abstractions;
 using Type = Core.Domains.Transactions.Models.Type;
 
 namespace UnitTest.Core.Domains.Transactions.UseCases;

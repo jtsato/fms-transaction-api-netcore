@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace IntegrationTest.EntryPoint.WebApi.Commons;
 
