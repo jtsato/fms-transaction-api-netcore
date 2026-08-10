@@ -17,6 +17,7 @@ Este projeto implementa os princípios da Clean Architecture utilizando .NET 10.
 * [Technology stack](#technology-stack)
 * [Prerequisites](#prerequisites)
 * [Solution Structure](#solution-structure)
+* [Architecture Diagrams](#architecture-diagrams)
 * [Testing Strategy](#testing-strategy)
 * [Mutation Reports](#mutation-reports)
 * [Building and Running the solution](#building-and-running-the-solution)
@@ -103,6 +104,12 @@ Este projeto implementa os princípios da Clean Architecture utilizando .NET 10.
 * Os frameworks (por exemplo, para injeção de dependência) ficam isolados aqui.
 * Possui os “detalhes sujos” como a classe Main, configuração do servidor web, configuração de datasources, etc.
 
+## Architecture Diagrams
+
+The C4 source diagrams are stored in [`docs/c4-models`](docs/c4-models). The diagrams workflow regenerates PNG artifacts under `docs/diagrams` whenever the source models change.
+
+The application follows a dependency direction of `EntryPoint.WebApi -> Core -> Infra.PostgreSql`; the Core layer depends on gateway abstractions and does not reference PostgreSQL details.
+
 ## Testing Strategy
 ##### Unit Tests
 * Para TDD (ou seja, testes primeiro, para conduzir o design).
@@ -139,8 +146,7 @@ dotnet test --nologo -v q
 * Executando testes de mutação:
 ```
 cd UnitTest.Core
-dotnet new tool-manifest
-dotnet tool install dotnet-stryker --version 4.5.1
+dotnet tool restore
 dotnet stryker
 ```
 * Iniciando a solução:

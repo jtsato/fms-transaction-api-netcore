@@ -1,0 +1,52 @@
+name: Diagrams Generation
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/diagrams-generation.yml
+      - docs/c4-models/*.puml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  diagrams-generation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Setup Java
+        uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Install Graphviz
+        run: sudo apt-get update && sudo apt-get install -y graphviz
+
+      - name: Download PlantUML
+        run: curl --fail --location --output plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
+
+      - name: Generate diagrams
+        run: |
+          mkdir -p docs/diagrams
+          java -jar plantuml.jar -tpng -o "$(pwd)/docs/diagrams" docs/c4-models/*.puml
+
+      - name: Commit generated diagrams
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then exit 0; fi
+          git config user.email action@github.com
+          git config user.name "C4 Model Diagrams Generation"
+          git add docs/diagrams
+          git commit -m "doc(diagrams): update diagrams"
+          git push

@@ -13,32 +13,29 @@ env:
   DOTNET_CLI_TELEMETRY_OPTOUT: 1 # Opt out of the .NET SDK telemetry feature
   SONAR_DOTNET_ENABLE_CONCURRENT_EXECUTION: true
 
+permissions:
+  contents: read
+
 jobs:
   scanner:
     runs-on: ubuntu-latest
     steps:
       - name: Setup .NET [v10.0.x]
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
         with:
           dotnet-version: |
             10.0.x
 
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
 
-      - name: Install docker-compose
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker-compose
-
-      - name: Show docker-compose version
-        run: |
-          docker-compose version
+      - name: Show Docker Compose version
+        run: docker compose version
 
       - name: Start PostgreSQL Container
-        run: docker-compose -f src/test/IntegrationTest.Infra.PostgreSql/docker-compose.yml up -d
+        run: docker compose -f src/test/IntegrationTest.Infra.PostgreSql/docker-compose.yml up -d
 
       - name: Resolve dependencies
         run: dotnet restore --force --no-cache
@@ -54,13 +51,13 @@ jobs:
         run: dotnet build --configuration Debug --no-restore
 
       - name: Set up JDK [17]
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
         with:
           distribution: "temurin"
           java-version: 17
 
       - name: Cache SonarCloud packages
-        uses: actions/cache@v3
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ~/sonar/cache
           key: ${{ runner.os }}-sonar
@@ -68,7 +65,7 @@ jobs:
 
       - name: Cache SonarCloud scanner
         id: cache-sonar-scanner
-        uses: actions/cache@v3
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ./.sonar/scanner
           key: ${{ runner.os }}-sonar-scanner
@@ -89,17 +86,17 @@ jobs:
           /n:"transactions-api-netcore" \
           /d:sonar.projectDescription="Properties API .NET Core" \
           /d:sonar.links.scm="https://github.com/jtsato/transactions-api-netcore" \
-          /d:sonar.login="${{ env.SONAR_TOKEN }}" \
+          /d:sonar.token="${{ env.SONAR_TOKEN }}" \
           /d:sonar.host.url="https://sonarcloud.io" \
           /d:sonar.qualitygate.wait=false \
           /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml" \
           /d:sonar.dotnet.excludeTestProjects=true
           dotnet build transactions-api-netcore.sln --configuration Debug --no-restore
           dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --configuration Debug --no-build --nologo -v n
-          ./.sonar/scanner/dotnet-sonarscanner end /d:sonar.login="${{ env.SONAR_TOKEN }}"
+          ./.sonar/scanner/dotnet-sonarscanner end /d:sonar.token="${{ env.SONAR_TOKEN }}"
 
       - name: Environment Teardown
         if: always()
         run: |
-          docker-compose -f src/test/IntegrationTest.Infra.PostgreSql/docker-compose.yml down -v --remove-orphans
+          docker compose -f src/test/IntegrationTest.Infra.PostgreSql/docker-compose.yml down -v --remove-orphans
           echo "Environment Teardown"

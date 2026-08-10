@@ -13,10 +13,11 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Dapper" Version="2.1.79" />
-        <PackageReference Include="Dapper.SqlBuilder" Version="2.1.66" />
-        <PackageReference Include="Npgsql" Version="10.0.3" />
-        <PackageReference Include="Npgsql.DependencyInjection" Version="10.0.3" />
+        <PackageReference Include="Dapper" />
+        <PackageReference Include="Dapper.SqlBuilder" />
+        <PackageReference Include="Npgsql" />
+        <PackageReference Include="Npgsql.DependencyInjection" />
+        <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" />
     </ItemGroup>
 
 </Project>

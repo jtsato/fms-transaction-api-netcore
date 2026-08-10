@@ -19,8 +19,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="FluentValidation" Version="12.1.1" />
-        <PackageReference Include="Newtonsoft.Json.Schema" Version="4.0.1" />
+        <PackageReference Include="FluentValidation" />
+        <PackageReference Include="Newtonsoft.Json.Schema" />
     </ItemGroup>
 
 </Project>

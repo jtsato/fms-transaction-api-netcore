@@ -5,7 +5,7 @@ on:
     branches:
       - "main"
     paths:
-      - ".github/workflows/transaction-mutation-testing.yml"
+      - ".github/workflows/mutation-testing.yml"
   schedule:
     - cron: "30 3 * * 1-5"
   workflow_dispatch:
@@ -13,8 +13,6 @@ on:
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 # Allow one concurrent deployment
 concurrency:
@@ -30,29 +28,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup .NET [v10.0.x]
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
         with:
           dotnet-version: |
             10.0.x
 
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: main
           persist-credentials: true
           fetch-depth: 0
 
-      - name: Install docker-compose
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker-compose
-
-      - name: Show docker-compose version
-        run: |
-          docker-compose version
+      - name: Show Docker Compose version
+        run: docker compose version
 
       - name: Start PostgreSQL Container
-        run: docker-compose -f src/test/IntegrationTest.Infra.PostgreSql/docker-compose.yml up -d
+        run: docker compose -f src/test/IntegrationTest.Infra.PostgreSql/docker-compose.yml up -d
 
       - name: Resolve dependencies
         run: dotnet restore --force --no-cache
@@ -70,8 +62,7 @@ jobs:
       - name: Mutation [Core]
         working-directory: ./src/test/UnitTest.Core
         run: |
-          dotnet new tool-manifest
-          dotnet tool install dotnet-stryker --version 4.5.1
+          dotnet tool restore
           dotnet stryker
 
       - name: Copy report to right place [Core]
@@ -82,8 +73,7 @@ jobs:
       - name: Mutation [EntryPoint WebApi]
         working-directory: ./src/test/IntegrationTest.EntryPoint.WebApi
         run: |
-          dotnet new tool-manifest
-          dotnet tool install dotnet-stryker --version 4.5.1
+          dotnet tool restore
           dotnet stryker
 
       - name: Copy report to right place [WebApi]
@@ -94,8 +84,7 @@ jobs:
       - name: Mutation [Infra PostgreSQL]
         working-directory: ./src/test/IntegrationTest.Infra.PostgreSql
         run: |
-          dotnet new tool-manifest
-          dotnet tool install dotnet-stryker --version 4.5.1
+          dotnet tool restore
           dotnet stryker
 
       - name: Copy report to right place [Infra PostgreSQL]
@@ -124,7 +113,7 @@ jobs:
       # In the /settings/actions section set Read and write permissions for the GITHUB_TOKEN
       - name: Push the changes
         if: ${{ env.SHOULD_I_COMMIT == 'Yes' }}
-        uses: ad-m/github-push-action@master
+        uses: ad-m/github-push-action@881a6320fdb16eb5318c5054f31c218aecb2b324c # v1.3.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
@@ -132,5 +121,5 @@ jobs:
       - name: Environment Teardown
         if: always()
         run: |
-          docker-compose -f src/test/IntegrationTest.Infra.PostgreSql/docker-compose.yml down
+          docker compose -f src/test/IntegrationTest.Infra.PostgreSql/docker-compose.yml down -v --remove-orphans
           echo "Environment Teardown"

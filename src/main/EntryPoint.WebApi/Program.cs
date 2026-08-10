@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Core.Commons;
 using EntryPoint.WebApi.Commons;
 using EntryPoint.WebApi.Commons.Filters;
+using Infra.PostgreSql.Commons.Health;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http;
@@ -18,6 +19,7 @@ using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -30,6 +32,9 @@ public static class Program
     private static async Task Main(string[] args)
     {
         WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+
+        builder.Logging.ClearProviders();
+        builder.Logging.AddConsole();
 
         builder.Services.Configure<ApiBehaviorOptions>(options =>
         {
@@ -53,36 +58,35 @@ public static class Program
         builder.Services.AddHttpContextAccessor();
 
         builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddAuthorization();
         if (builder.Environment.IsDevelopment() || builder.Environment.IsStaging())
         {
             builder.Services.AddSwaggerGen(ConfigureSwaggerGen);
         }
 
         builder.Services.AddHealthChecks()
-            .AddCheck("Health check", () => HealthCheckResult.Healthy(), tags: new[] {"live", "ready"});
+            .AddCheck("Application liveness", () => HealthCheckResult.Healthy(), tags: new[] {"live"})
+            .AddCheck<PostgreSqlHealthCheck>("PostgreSQL readiness", tags: new[] {"ready"});
 
-        Dictionary<Type, ServiceLifetime> lifetimeByType= DependencyInjector.ConfigureServices(builder.Services);
+        Dictionary<Type, ServiceLifetime> lifetimeByType = DependencyInjector.ConfigureServices(builder.Services, builder.Configuration);
+
+        string[] allowedOrigins = builder.Configuration
+            .GetSection("Cors:AllowedOrigins")
+            .GetChildren()
+            .Select(section => section.Value)
+            .Where(value => !string.IsNullOrWhiteSpace(value))
+            .ToArray();
 
         builder.Services.AddCors(options =>
         {
             options.AddPolicy("CorsPolicy",
                 policy =>
                 {
-                    policy.WithOrigins
-                        (
-                            "https://patolar.com.br",
-                            "https://www.patolar.com.br",
-                            "https://app.patolar.com.br",
-                            "https://api.patolar.com.br",
-                            "https://patolar-dev.flutterflow.app",
-                            "https://app.flutterflow.io",
-                            "https://ff-debug-service-frontend-free-ygxkweukma-uc.a.run.app",
-                            "https://ff-debug-service-frontend-pro-ygxkweukma-uc.a.run.app",
-                            "http://localhost:8000"
-                        )
-                        .AllowAnyHeader()
-                        .AllowAnyMethod()
-                        .AllowCredentials();
+                    policy.AllowAnyHeader().AllowAnyMethod();
+                    if (allowedOrigins.Length > 0)
+                    {
+                        policy.WithOrigins(allowedOrigins).AllowCredentials();
+                    }
                 });
         });
 
@@ -123,7 +127,7 @@ public static class Program
             app.UseSwaggerUI(options =>
             {
                 options.RoutePrefix = "api/transactions-search/v1/swagger";
-                options.SwaggerEndpoint("/api/transactions-search/v1/api-docs/v1/swagger.yaml", "Properties Search API");
+                options.SwaggerEndpoint("/api/transactions-search/v1/api-docs/v1/swagger.yaml", "Transactions API");
             });
             RewriteOptions rewriteOptions = new RewriteOptions();
             rewriteOptions.AddRedirect("^$", "swagger");
@@ -161,9 +165,9 @@ public static class Program
 
         options.SwaggerDoc("v1", new OpenApiInfo
         {
-            Title = "Properties Search API",
+            Title = "Transactions API",
             Version = "v1",
-            Description = "Properties Search API",
+            Description = "Transactions API",
         });
 
         options.AddSecurityDefinition("ApiKey", new OpenApiSecurityScheme
@@ -205,18 +209,13 @@ public static class Program
         options.LoggingFields = HttpLoggingFields.RequestPath
                                 | HttpLoggingFields.RequestQuery
                                 | HttpLoggingFields.RequestMethod
-                                | HttpLoggingFields.RequestBody
                                 | HttpLoggingFields.ResponseStatusCode
                                 | HttpLoggingFields.ResponseHeaders
-                                | HttpLoggingFields.RequestHeaders
-                                | HttpLoggingFields.ResponseBody;
+                                | HttpLoggingFields.RequestHeaders;
 
         options.RequestHeaders.Add("Accept-Language");
         options.ResponseHeaders.Add("Content-Type");
         options.RequestHeaders.Add("X-Correlation-Id");
-        options.ResponseHeaders.Add("X-Correlation-Id");
         options.MediaTypeOptions.AddText("application/json");
-        options.RequestBodyLogLimit = 4096;
-        options.ResponseBodyLogLimit = 4096;
     }
 }

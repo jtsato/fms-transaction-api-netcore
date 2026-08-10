@@ -7,7 +7,6 @@ using Core.Domains.Transactions.Gateways;
 using Core.Domains.Transactions.Models;
 using Core.Domains.Transactions.UseCases;
 using Moq;
-using UnitTest.Core.Commons;
 using Xunit;
 using Type = Core.Domains.Transactions.Models.Type;
 
@@ -27,11 +26,7 @@ public sealed class RegisterTransactionUseCaseTest : IDisposable
         _registerTransactionGateway = new Mock<IRegisterTransactionGateway>();
         _getDateTime = new Mock<IGetDateTime>();
 
-        ServiceResolverMocker serviceResolverMocker = new ServiceResolverMocker()
-            .AddService(_registerTransactionGateway.Object)
-            .AddService(_getDateTime.Object);
-
-        _useCase = new RegisterTransactionUseCase(serviceResolverMocker.Object);        
+        _useCase = new RegisterTransactionUseCase(_registerTransactionGateway.Object, _getDateTime.Object);
     }
     
     private bool _disposed;

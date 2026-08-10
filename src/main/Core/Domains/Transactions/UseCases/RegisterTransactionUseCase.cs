@@ -14,11 +14,10 @@ public class RegisterTransactionUseCase : IRegisterTransactionUseCase
     private readonly IRegisterTransactionGateway _registerTransactionGateway;
     private readonly IGetDateTime _getDateTime;
     
-    public RegisterTransactionUseCase(IServiceResolver serviceResolver)
+    public RegisterTransactionUseCase(IRegisterTransactionGateway registerTransactionGateway, IGetDateTime getDateTime)
     {
-        ArgumentValidator.CheckNull(serviceResolver, nameof(serviceResolver));
-        _registerTransactionGateway = serviceResolver.Resolve<IRegisterTransactionGateway>();
-        _getDateTime = serviceResolver.Resolve<IGetDateTime>();
+        _registerTransactionGateway = registerTransactionGateway ?? throw new ArgumentNullException(nameof(registerTransactionGateway));
+        _getDateTime = getDateTime ?? throw new ArgumentNullException(nameof(getDateTime));
     }
     
     public async Task<Transaction> ExecuteAsync(RegisterTransactionCommand command)

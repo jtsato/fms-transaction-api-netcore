@@ -1,32 +1,36 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Diagnostics.CodeAnalysis;
 using Core.Commons;
+using Core.Domains.Transactions.Gateways;
+using Core.Domains.Transactions.UseCases;
 using EntryPoint.WebApi.Commons;
 using EntryPoint.WebApi.Commons.Exceptions;
 using EntryPoint.WebApi.Commons.Filters;
+using EntryPoint.WebApi.Domains.Commons;
+using EntryPoint.WebApi.Domains.Transactions.EntryPoints;
+using Infra.PostgreSql.Commons.Connection;
+using Infra.PostgreSql.Commons.Context;
+using Infra.PostgreSql.Domains.Providers;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Npgsql;
 
 namespace EntryPoint.WebApi;
 
 [ExcludeFromCodeCoverage]
 public static class DependencyInjector
 {
-    private static readonly string ConnectionString =
-        Environment.GetEnvironmentVariable("DB_CONNECTION_STRING") ?? string.Empty;
-
-    private static readonly string DatabaseName =
-        Environment.GetEnvironmentVariable("MONGODB_DATABASE") ?? string.Empty;
-
-    private static readonly string CollectionName =
-        Environment.GetEnvironmentVariable("TRANSACTION_TABLE_NAME") ?? string.Empty;
-
-    public static Dictionary<Type, ServiceLifetime> ConfigureServices(IServiceCollection services)
+    public static Dictionary<Type, ServiceLifetime> ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
+        ArgumentValidator.CheckNull(services, nameof(services));
+        ArgumentValidator.CheckNull(configuration, nameof(configuration));
+
         AddSharedServices(services);
         AddEntryPointServices(services);
-        // AddCoreServices(services);
-        // AddInfrastructureServices(services, new ConnectionFactory(ConnectionString));
+        AddCoreServices(services);
+        AddInfrastructureServices(services, configuration);
 
         return BuildLifetimeByType(services);
     }
@@ -43,24 +47,27 @@ public static class DependencyInjector
         services.AddLocalization(options => options.ResourcesPath = "Resources");
         services.AddSingleton<IExceptionHandler, ExceptionHandler>();
         services.AddSingleton<IGetCorrelationId, GetCorrelationId>();
-        //services.AddSingleton<ISearchTransactionsController, SearchTransactionsController>();
-        //services.AddSingleton<IGetPropertyByUuidController, GetPropertyByUuidController>();
+        services.AddScoped<IRegisterTransactionController, RegisterTransactionController>();
     }
 
-    /*
     private static void AddCoreServices(IServiceCollection services)
     {
-        services.AddSingleton<ISearchTransactionsUseCase, SearchTransactionsUseCase>();
-        services.AddSingleton<IGetPropertyByUuidUseCase, GetPropertyByUuidUseCase>();
+        services.AddScoped<IRegisterTransactionUseCase, RegisterTransactionUseCase>();
     }
 
-    private static void AddInfrastructureServices(IServiceCollection services, IConnectionFactory connectionFactory)
+    private static void AddInfrastructureServices(IServiceCollection services, IConfiguration configuration)
     {
-        services.AddSingleton<ISearchTransactionsGateway, SearchTransactionsProvider>();
-        services.AddSingleton<IGetPropertyByUuidGateway, GetPropertyByUuidProvider>();
-        services.AddSingleton<IRepository<PropertyEntity>>(_ => new PropertyRepository(connectionFactory, DatabaseName, CollectionName));
+        string connectionString = ArgumentValidator.CheckEmpty(
+            configuration["DB_CONNECTION_STRING"],
+            "DB_CONNECTION_STRING",
+            "The DB_CONNECTION_STRING configuration value is required.");
+
+        services.AddSingleton<DbDataSource>(_ => new NpgsqlDataSourceBuilder(connectionString).Build());
+        services.AddSingleton<IConnectionFactory>(_ => new ConnectionFactory(connectionString));
+        services.AddSingleton<DbContext>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IRegisterTransactionGateway, RegisterTransactionProvider>();
     }
-    */
 
     private static Dictionary<Type, ServiceLifetime> BuildLifetimeByType(IServiceCollection services)
     {

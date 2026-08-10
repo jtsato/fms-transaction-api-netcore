@@ -1,0 +1,20 @@
+@startuml
+title Transactions API - Container Diagram
+
+skinparam componentStyle rectangle
+skinparam shadowing false
+
+actor "Financial Management Client" as client
+rectangle "Transactions API" {
+  component "ASP.NET Core Web API\nEntrypoints" as web
+  component "Transaction Use Cases\nCore" as core
+  component "PostgreSQL Providers\nInfrastructure" as infra
+}
+database "PostgreSQL" as database
+
+client --> web : HTTP/JSON
+web --> core : Commands and responses
+core --> infra : Gateway interfaces
+infra --> database : Dapper/Npgsql
+
+@enduml

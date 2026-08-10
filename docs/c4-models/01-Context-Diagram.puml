@@ -1,0 +1,16 @@
+@startuml
+title Transactions API - Context Diagram
+
+skinparam componentStyle rectangle
+skinparam shadowing false
+
+actor "Financial Management Client" as client
+rectangle "Transactions API" as api
+database "PostgreSQL" as database
+rectangle "Financial Management Platform" as platform
+
+client --> api : Register transactions
+platform --> api : Consume transaction data
+api --> database : Persist transactions and audit data
+
+@enduml
