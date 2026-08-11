@@ -188,7 +188,7 @@ public static class Program
         options.TagActionsBy(api => new[] {api.GroupName});
 
         string[] methodsOrder = {"post", "put", "patch", "delete", "get", "options", "trace"};
-        options.OrderActionsBy(apiDesc => $"{Array.IndexOf(methodsOrder, apiDesc.HttpMethod!.ToLower())}_{apiDesc.HttpMethod}");
+        options.OrderActionsBy(apiDesc => $"{Array.IndexOf(methodsOrder, apiDesc.HttpMethod.ToLower())}_{apiDesc.HttpMethod}");
     }
 
     private static void ConfigureSwagger(SwaggerOptions options)

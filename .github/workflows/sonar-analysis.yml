@@ -82,7 +82,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.sonarToken }}
         run: |
           ./.sonar/scanner/dotnet-sonarscanner begin /o:"jtsato" \
-          /k:"jtsato_transactions-api-netcore" \
+          /k:"jtsato_fms-transaction-api-netcore" \
           /n:"transactions-api-netcore" \
           /d:sonar.projectDescription="Properties API .NET Core" \
           /d:sonar.links.scm="https://github.com/jtsato/transactions-api-netcore" \

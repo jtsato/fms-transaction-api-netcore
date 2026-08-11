@@ -11,6 +11,7 @@ namespace EntryPoint.WebApi.Commons.Filters;
 
 [ExcludeFromCodeCoverage]
 [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
 public sealed class GetLanguageActionFilterAttribute : ActionFilterAttribute
 {
     private static readonly string[] SupportedCultures = {"pt-BR", "en-US"};

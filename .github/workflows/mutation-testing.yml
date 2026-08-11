@@ -92,6 +92,15 @@ jobs:
           mkdir -p ./docs/mutation-reports/Infra.PostgreSql
           find ./src/test/IntegrationTest.Infra.PostgreSql/StrykerOutput -name '*.html' -exec cp -prv '{}' './docs/mutation-reports/Infra.PostgreSql' ';'
 
+      - name: Add accessibility metadata to mutation reports
+        run: |
+          find ./docs/mutation-reports -name '*.html' -print0 | while IFS= read -r -d '' report; do
+            sed -i 's/<html>/<html lang="en">/' "$report"
+            if ! grep -q '<title>' "$report"; then
+              sed -i 's#<meta charset="UTF-8">#<meta charset="UTF-8">\n        <title>Mutation Test Report</title>#' "$report"
+            fi
+          done
+
       - name: Check for changes
         run: |
           if [ -n "$(git status --porcelain)" ]; then

@@ -158,7 +158,7 @@ jobs:
           echo "Environment Teardown"
 
   request-infrastructure-update:
-    if: ${{ github.ref == 'refs/heads/main' }} && false
+    if: ${{ github.ref == 'refs/heads/main' && false }}
     needs: generate-artifact
     runs-on: ubuntu-latest
     env:

@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Net;
+using System;
 using EntryPoint.WebApi.Commons.Exceptions;
 using EntryPoint.WebApi.Commons.Models;
 using EntryPoint.WebApi.Resources;
@@ -10,6 +11,7 @@ namespace EntryPoint.WebApi.Commons.Filters;
 
 [ExcludeFromCodeCoverage]
 [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
 public sealed class HandleInvalidModelStateActionFilterAttribute : ActionFilterAttribute
 {
     public override void OnActionExecuting(ActionExecutingContext context)

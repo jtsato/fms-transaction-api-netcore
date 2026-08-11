@@ -53,7 +53,7 @@ public static partial class OrderByHelper
     private static bool IsDirectionCommand(string value)
     {
         return DescendingDirection.Equals(value, StringComparison.InvariantCultureIgnoreCase) ||
-               value!.EndsWith($":{AscendingDirection}", StringComparison.InvariantCultureIgnoreCase) ||
-               value!.EndsWith($":{DescendingDirection}", StringComparison.InvariantCultureIgnoreCase);
+               value.EndsWith($":{AscendingDirection}", StringComparison.InvariantCultureIgnoreCase) ||
+               value.EndsWith($":{DescendingDirection}", StringComparison.InvariantCultureIgnoreCase);
     }
 }

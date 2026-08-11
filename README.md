@@ -3,13 +3,13 @@
 Este projeto implementa os princípios da Clean Architecture utilizando .NET 10. Trata-se de um serviço responsável por registrar, armazenar e gerenciar lançamentos, garantindo consistência por meio de um banco de dados relacional PostgreSQL. Além disso, expõe APIs REST para facilitar a interação com os lançamentos de forma eficiente e escalável.
 
 [![CI](https://github.com/jtsato/fms-transaction-api-netcore/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/jtsato/fms-transaction-netcore/actions/workflows/continuous-integration.yml)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=jtsato_transactions-api-netcore&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=jtsato_transactions-api-netcore)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=jtsato_fms-transaction-api-netcore&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=jtsato_fms-transaction-api-netcore)
 
-[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=jtsato_transactions-api-netcore&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=jtsato_transactions-api-netcore)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=jtsato_transactions-api-netcore&metric=coverage)](https://sonarcloud.io/summary/new_code?id=jtsato_transactions-api-netcore)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=jtsato_transactions-api-netcore&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=jtsato_transactions-api-netcore)
-[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=jtsato_transactions-api-netcore&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=jtsato_transactions-api-netcore)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=jtsato_transactions-api-netcore&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=jtsato_transactions-api-netcore)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=jtsato_fms-transaction-api-netcore&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=jtsato_fms-transaction-api-netcore)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=jtsato_fms-transaction-api-netcore&metric=coverage)](https://sonarcloud.io/summary/new_code?id=jtsato_fms-transaction-api-netcore)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=jtsato_fms-transaction-api-netcore&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=jtsato_fms-transaction-api-netcore)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=jtsato_fms-transaction-api-netcore&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=jtsato_fms-transaction-api-netcore)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=jtsato_fms-transaction-api-netcore&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=jtsato_fms-transaction-api-netcore)
 
 **Índice de Conteúdos**
 
