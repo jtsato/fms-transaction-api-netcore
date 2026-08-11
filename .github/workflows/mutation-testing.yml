@@ -27,18 +27,17 @@ jobs:
   run-mutation:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup .NET [v10.0.x]
-        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
-        with:
-          dotnet-version: |
-            10.0.x
-
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: main
           persist-credentials: true
           fetch-depth: 0
+
+      - name: Setup .NET [v10.0.x]
+        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: 10.0.x
 
       - name: Show Docker Compose version
         run: docker compose version
@@ -51,10 +50,8 @@ jobs:
 
       - name: Hack [issue "MSB3026 Unable to copy file" for EmbeddedResources]
         run: |
-          mkdir -p src/test/IntegrationTest.EntryPoint.WebApi/bin/Debug/net10.0/pt-br
-          mkdir -p src/test/IntegrationTest.EntryPoint.WebApi/bin/Debug/net10.0/en-us
-          mkdir -p src/test/IntegrationTest.EntryPoint.WebApi/bin/Release/net10.0/pt-br
-          mkdir -p src/test/IntegrationTest.EntryPoint.WebApi/bin/Release/net10.0/en-us
+          mkdir -p src/test/IntegrationTest.EntryPoint.WebApi/bin/Debug/net10.0/{pt-br,en-us}
+          mkdir -p src/test/IntegrationTest.EntryPoint.WebApi/bin/Release/net10.0/{pt-br,en-us}
 
       - name: Build in Debug Mode
         run: dotnet build --configuration Debug --no-restore
@@ -89,46 +86,27 @@ jobs:
 
       - name: Copy report to right place [Infra PostgreSQL]
         run: |
-          mkdir -p ./docs/mutation-reports/Infra.PostgreSql
-          find ./src/test/IntegrationTest.Infra.PostgreSql/StrykerOutput -name '*.html' -exec cp -prv '{}' './docs/mutation-reports/Infra.PostgreSql' ';'
+          mkdir -p ./docs/mutation-reports/Core ./docs/mutation-reports/EntryPoint.WebApi ./docs/mutation-reports/Infra.PostgreSql
+          find ./src/test/UnitTest.Core/StrykerOutput -name '*.html' -exec cp -prv '{}' './docs/mutation-reports/Core' ';' || true
+          find ./src/test/IntegrationTest.EntryPoint.WebApi/StrykerOutput -name '*.html' -exec cp -prv '{}' './docs/mutation-reports/EntryPoint.WebApi' ';' || true
+          find ./src/test/IntegrationTest.Infra.PostgreSql/StrykerOutput -name '*.html' -exec cp -prv '{}' './docs/mutation-reports/Infra.PostgreSql' ';' || true
 
-      - name: Add accessibility metadata to mutation reports
-        run: |
-          find ./docs/mutation-reports -name '*.html' -print0 | while IFS= read -r -d '' report; do
-            sed -i 's/<html>/<html lang="en">/' "$report"
-            if ! grep -q '<title>' "$report"; then
-              sed -i 's#<meta charset="UTF-8">#<meta charset="UTF-8">\n        <title>Mutation Test Report</title>#' "$report"
-            fi
-          done
-
-      - name: Check for changes
+      - name: Commit and Push Changes
         run: |
           if [ -n "$(git status --porcelain)" ]; then
-            echo "SHOULD_I_COMMIT=Yes" >> $GITHUB_ENV
+            git config pull.rebase false        
+            git config --local user.email "action@github.com"
+            git config --local user.name "Stryker.NET"
+            git add docs/mutation-reports/
+            git commit -m "doc(testing): update mutation reports"
+            git pull origin main
+            git push origin main
           else
-            echo "SHOULD_I_COMMIT=No" >> $GITHUB_ENV
+            echo "No changes to commit"
           fi
-
-      - name: Commit the changes
-        if: ${{ env.SHOULD_I_COMMIT == 'Yes' }}
-        run: |
-          git config pull.rebase false        
-          git config --local user.email "action@github.com"
-          git config --local user.name "Stryker.NET"
-          git add --all
-          git commit -m "doc(testing): update mutation reports"
-          git pull origin ${GITHUB_REF##*/}
-
-      # In the /settings/actions section set Read and write permissions for the GITHUB_TOKEN
-      - name: Push the changes
-        if: ${{ env.SHOULD_I_COMMIT == 'Yes' }}
-        uses: ad-m/github-push-action@881a6320fdb16eb5318c5054f31c218aecb2b324c # v1.3.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
 
       - name: Environment Teardown
         if: always()
         run: |
-          docker compose -f src/test/IntegrationTest.Infra.PostgreSql/docker-compose.yml down -v --remove-orphans
+          docker compose -f src/test/IntegrationTest.Infra.PostgreSql/docker-compose.yml down
           echo "Environment Teardown"
